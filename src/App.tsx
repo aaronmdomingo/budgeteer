@@ -11,7 +11,6 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route exact path='/'>
-          <h1> Hello World! </h1>
         </Route>
       </Switch>
     </Router>
