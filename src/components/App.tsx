@@ -10,7 +10,9 @@ const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/' component={LandingPage} />
+        <Route exact path='/'>
+         <LandingPage />
+        </Route>
       </Switch>
     </Router>
   );
