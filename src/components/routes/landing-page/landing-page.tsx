@@ -10,39 +10,6 @@ const LandingPage = ({props}: any) => {
         setIsClicked(true);
     }
 
-    const element = isClicked 
-    ? 
-    <CSSTransition 
-        in={isClicked} 
-        apprea={isClicked}
-        timeout={800} 
-        classNames="fade"
-        unmountOnExit>
-        {
-            state => (
-                <div className="landing__page_login">
-                    <button className="landing__page_login-register">
-                        Register
-                    </button>
-                    <button className="landing__page_login-login">
-                        Login
-                    </button>
-                    <div className="landing__page_login-guest">
-                        Log in as a guest
-                    </div>
-                </div>
-            )
-        }
-    </CSSTransition>
-    : 
-    <div className="landing__page_button" onClick={clickHandler}>
-        <span>Get Started</span>
-        <svg>
-            <polyline className="o1" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
-            <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
-        </svg>
-    </div>;
-
     return (
         <div className="landing__page">
             <div className="landing__page_logo"></div>
