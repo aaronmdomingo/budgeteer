@@ -1,0 +1,124 @@
+.landing__page {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+    &_logo {
+        height: 20rem;
+        width: 20rem;
+        background: url('../../images/budgeteer-white.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    &_slogan {
+        color: #ffffff;
+        margin-bottom: 1rem;
+    }
+
+    &_login {
+        width: 20rem;
+        height: 20rem;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        &-guest {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.8rem;
+
+            & span {
+                color :#FFA114;
+                transition: all 0.2s;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    &_button {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        height: 20rem;
+        width: 20rem;
+        
+        cursor: pointer;
+
+        &-sub {
+            height: 3.5rem;
+            width: 10rem;
+        }
+
+        svg {
+            height: 55px;
+            width: 150px;
+            fill: none;
+            stroke-width: 5;
+
+            .o1 {
+                stroke: rgba(#FFB341, 0.7);
+                fill: #FFA114;
+                transition: all 1s ease-in-out;
+            }
+
+            .o2 {
+                stroke: white;
+                stroke-dasharray: 20 420;
+                stroke-dashoffset: 20;
+                transition: all 1s ease-in-out;
+            }
+        }
+
+        span {
+            position: absolute;
+            margin: auto 0;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+
+        &:hover {
+            .o1{
+                fill: rgba(#CC8110, 0.3);
+            }
+            
+            .o2 {
+                stroke-dashoffset: -420;
+            }
+        }
+    }
+}
+
+.fade-enter {
+    opacity: 0.01;
+  }
+  
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+.fade-leave {
+    opacity: 1;
+  }
+  
+.fade-leave.fade-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
