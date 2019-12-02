@@ -4,7 +4,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import LandingPage from './routes/landing-page';
+import LandingPage from './routes/landing-page/landing-page';
 
 const App: React.FC = () => {
   return (
