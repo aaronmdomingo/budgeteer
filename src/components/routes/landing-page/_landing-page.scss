@@ -40,7 +40,6 @@
 
             & span {
                 color :#FFA114;
-                transition: all 0.2s;
                 cursor: pointer;
 
                 &:hover {
@@ -50,21 +49,22 @@
         }
     }
 
+    &_actions {
+        height: 20rem;
+        width: 20rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     &_button {
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 5px;
-        height: 20rem;
-        width: 20rem;
-        
+        height: 3.5rem;
+        width: 10rem;
         cursor: pointer;
-
-        &-sub {
-            height: 3.5rem;
-            width: 10rem;
-        }
 
         svg {
             height: 55px;
