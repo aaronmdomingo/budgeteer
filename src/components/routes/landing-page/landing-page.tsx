@@ -36,7 +36,7 @@ const LandingPage = (props: any) => {
             <CSSTransition 
                 in={isClicked} 
                 appear={isClicked}
-                timeout={800} 
+                timeout={500} 
                 classNames="fade"
                 unmountOnExit>
                 <div className="landing__page_login">
