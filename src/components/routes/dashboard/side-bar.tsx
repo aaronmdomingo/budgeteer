@@ -16,7 +16,8 @@ const SideBar = (props: any) => {
                         month={e} 
                         setMonth={props.setMonth}
                         currentMonth={props.currentMonth} 
-                        currentUser={props.currentUser}/>
+                        currentUser={props.currentUser}
+                        sideBarHandler={props.sideBarHandler}/>
                     })
                 }
             </div>

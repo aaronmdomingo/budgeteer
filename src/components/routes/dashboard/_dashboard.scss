@@ -72,6 +72,11 @@
                 justify-content: center;
                 align-items: center;
                 text-transform: capitalize;
+                transition: all 0.2s;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
 
                 &.current {
                     color: #fff;
