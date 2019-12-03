@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import SideBar from './side-bar';
 import './_dashboard.scss';
 
 
 const Dashboard = (props: any) => {
-    const months = ['January', 'February', 'March', 'April', 'May', 'June',
-                     'July', 'August', 'September', 'October', 'November', 'December'];
     const [showSideBar, setShowSideBar] = useState(false);
 
     const sideBarHandler = () => {
@@ -29,20 +28,10 @@ const Dashboard = (props: any) => {
             </div>
             <CSSTransition 
                 in={showSideBar} 
-                appear={showSideBar}
-                timeout={800} 
-                classNames="fade"
+                timeout={500} 
+                classNames="sidebar"
                 unmountOnExit>
-                {/* {
-                    state => (
-                       <div className="dashboard__sidebar">
-                           .dashboard__side
-                       </div>
-                    )
-                } */}
-                <div className="dashboard__sidebar">
-                           .dashboard__side
-                       </div>
+                <SideBar sideBarHandler={sideBarHandler} currentUser={props.currentUser} currentMonth={props.currentMonth} setMonth={props.setMonth}/>
             </CSSTransition>
         </div>
     )
