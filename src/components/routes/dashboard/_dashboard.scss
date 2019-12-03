@@ -1,0 +1,95 @@
+.dashboard {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80');
+    background-size: cover;
+    background-position: center;
+    overflow: scroll;
+
+
+    &__header {
+        height: 7.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &_menu {
+            height: 100%;
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & > i {
+                cursor: pointer;
+                font-size: 2rem;
+                color: #FFA114;
+            }
+        }
+
+        &_user_info {
+            height: 100%;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+        }
+    }
+
+    &__sidebar {
+        height: 100vh;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        background: #FFA114;
+        transition: all 0.4s ease-out;
+
+        &_logo {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('../../images/budgeteer-white.png');
+            background-size: cover;
+            background-position: center;
+            margin-top: 0.5rem;
+        }
+
+        &_months {
+            width: 100%;
+            height: 70%;
+
+            &_val {
+                height: 8.33%;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: capitalize;
+
+                &.current {
+                    color: #fff;
+                }
+            }
+        }
+
+        &_exit {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & i {
+                cursor: pointer;
+                font-size: 2rem;
+            }
+        }
+    }
+}
