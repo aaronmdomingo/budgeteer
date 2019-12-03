@@ -12,8 +12,14 @@ const LandingPage = (props: any) => {
     }
 
     const logIn = (userName: string) => {
+        const date = new Date();
+        const month = date.getMonth();
+        const monthsArr = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+        const monthName = monthsArr[month];
         props.logInUser(userName);
-        props.history.push(`/dashboard/${userName}/${props.currentMonth}`);
+        props.setMonth(monthName);
+        props.history.push(`/dashboard/${userName}/${monthName}`);
     }
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,14 +12,6 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentMonth, setCurrentMonth ] = useState('');
 
-  useEffect(() => {
-    const date = new Date();
-      const month = date.getMonth();
-      const monthsArr = ['January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'];
-      const monthName = monthsArr[month];
-    setCurrentMonth(monthName);
-  }, []);
 
   const logInUser = (user: string) => {
     setCurrentUser(user);
@@ -34,7 +26,7 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route exact path='/'>
-         <LandingPage logInUser={logInUser} currentMonth={currentMonth}/>
+         <LandingPage logInUser={logInUser} setMonth={setMonth}/>
         </Route>
         <Route path='/dashboard/:user/:monthName'>
           <Dashboard isLoggedIn={isLoggedIn} currentUser={currentUser} setMonth={setMonth} currentMonth={currentMonth}/>

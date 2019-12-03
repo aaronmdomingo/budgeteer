@@ -5,6 +5,7 @@ const Month = (props: any) => {
     const goToMonth = () => {
         props.setMonth(props.month);
         props.history.push(`/dashboard/${props.currentUser}/${props.month}`);
+        props.sideBarHandler();
     }
 
     return (
