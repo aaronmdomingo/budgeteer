@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import './_landing-page.scss';
 
 
-const LandingPage = ({props}: any) => {
+const LandingPage = (props: any) => {
     const [ isClicked, setIsClicked ] = useState(false);
 
     const clickHandler = () => {
         setIsClicked(true);
+    }
+
+    const logIn = (userName: string) => {
+        props.logInUser(userName);
+        props.history.push(`/dashboard/${userName}`);
     }
 
     return (
@@ -52,7 +58,7 @@ const LandingPage = ({props}: any) => {
                             </div> 
                             <div className="landing__page_login-guest">
                                 Don't have an account?
-                                <span>Log in as guest</span>
+                                <span onClick={() => logIn('guest')} >Log in as guest</span>
                             </div>
                         </div>
                     )
@@ -62,4 +68,4 @@ const LandingPage = ({props}: any) => {
     )
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);
