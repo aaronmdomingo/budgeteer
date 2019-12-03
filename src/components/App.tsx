@@ -23,7 +23,7 @@ const App: React.FC = () => {
          <LandingPage logInUser={logInUser}/>
         </Route>
         <Route path='/dashboard/:user'>
-          <Dashboard currentUser={currentUser} />
+          <Dashboard currentUser={currentUser}/>
         </Route>
       </Switch>
     </Router>
