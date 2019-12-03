@@ -13,7 +13,7 @@ const LandingPage = (props: any) => {
 
     const logIn = (userName: string) => {
         props.logInUser(userName);
-        props.history.push(`/dashboard/${userName}`);
+        props.history.push(`/dashboard/${userName}/${props.currentMonth}`);
     }
 
     return (
