@@ -39,30 +39,26 @@ const LandingPage = (props: any) => {
                 timeout={800} 
                 classNames="fade"
                 unmountOnExit>
-                {
-                    state => (
-                        <div className="landing__page_login">
-                            <div className="landing__page_button">
-                                <span>Register</span>
-                                <svg>
-                                    <polyline className="o1" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
-                                    <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
-                                </svg>
-                            </div> 
-                            <div className="landing__page_button">
-                                <span>Log in</span>
-                                <svg>
-                                    <polyline className="o1" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
-                                    <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
-                                </svg>
-                            </div> 
-                            <div className="landing__page_login-guest">
-                                Don't have an account?
-                                <span onClick={() => logIn('guest')} >Log in as guest</span>
-                            </div>
-                        </div>
-                    )
-                }
+                <div className="landing__page_login">
+                    <div className="landing__page_button">
+                        <span>Register</span>
+                        <svg>
+                            <polyline className="o1" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
+                            <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
+                        </svg>
+                    </div> 
+                    <div className="landing__page_button">
+                        <span>Log in</span>
+                        <svg>
+                            <polyline className="o1" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
+                            <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
+                        </svg>
+                    </div> 
+                    <div className="landing__page_login-guest">
+                        Don't have an account?
+                        <span onClick={() => logIn('guest')} >Log in as guest</span>
+                    </div>
+                </div>
             </CSSTransition>
         </div>
     )
