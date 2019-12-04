@@ -12,11 +12,8 @@ const SideBar = (props: any) => {
             <div className="dashboard__sidebar_months">
                 {
                     months.map((e, index) => {
-                        return <Month key={index} 
-                        month={e} 
-                        setMonth={props.setMonth}
-                        currentMonth={props.currentMonth} 
-                        currentUser={props.currentUser}
+                        return <Month key={index}
+                        month={e}
                         sideBarHandler={props.sideBarHandler}/>
                     })
                 }

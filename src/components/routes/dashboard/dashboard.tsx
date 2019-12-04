@@ -12,7 +12,6 @@ const Dashboard = (props: any) => {
         setShowSideBar(!showSideBar);
     }
 
-
     return (
         <div className="dashboard">
             <div className="dashboard__header">
@@ -26,12 +25,12 @@ const Dashboard = (props: any) => {
             <div className="dashboard__main">
 
             </div>
-            <CSSTransition 
-                in={showSideBar} 
-                timeout={500} 
+            <CSSTransition
+                in={showSideBar}
+                timeout={500}
                 classNames="sidebar"
                 unmountOnExit>
-                <SideBar sideBarHandler={sideBarHandler} currentUser={props.currentUser} currentMonth={props.currentMonth} setMonth={props.setMonth}/>
+                <SideBar sideBarHandler={sideBarHandler}/>
             </CSSTransition>
         </div>
     )

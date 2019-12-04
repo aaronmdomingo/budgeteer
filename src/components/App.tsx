@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,11 +7,16 @@ import {
 import LandingPage from './routes/landing-page/landing-page';
 import Dashboard from './routes/dashboard/dashboard';
 
+export const UserContext = createContext({
+  currentUser: '',
+  currentMonth: '',
+  setMonth: (e: any) => {}
+});
+
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentMonth, setCurrentMonth ] = useState('');
-
 
   const logInUser = (user: string) => {
     setCurrentUser(user);
@@ -29,7 +34,9 @@ const App: React.FC = () => {
          <LandingPage logInUser={logInUser} setMonth={setMonth}/>
         </Route>
         <Route path='/dashboard/:user/:monthName'>
-          <Dashboard isLoggedIn={isLoggedIn} currentUser={currentUser} setMonth={setMonth} currentMonth={currentMonth}/>
+          <UserContext.Provider value={{currentUser, currentMonth, setMonth}}>
+            <Dashboard isLoggedIn={isLoggedIn}/>
+          </UserContext.Provider>
         </Route>
       </Switch>
     </Router>
