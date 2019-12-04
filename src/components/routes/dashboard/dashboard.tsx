@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import SideBar from './side-bar';
@@ -11,7 +11,6 @@ const Dashboard = (props: any) => {
     const sideBarHandler = () => {
         setShowSideBar(!showSideBar);
     }
-
 
     return (
         <div className="dashboard">
@@ -26,12 +25,12 @@ const Dashboard = (props: any) => {
             <div className="dashboard__main">
 
             </div>
-            <CSSTransition 
-                in={showSideBar} 
-                timeout={500} 
+            <CSSTransition
+                in={showSideBar}
+                timeout={500}
                 classNames="sidebar"
                 unmountOnExit>
-                <SideBar sideBarHandler={sideBarHandler} currentUser={props.currentUser} currentMonth={props.currentMonth} setMonth={props.setMonth}/>
+                <SideBar sideBarHandler={sideBarHandler} />
             </CSSTransition>
         </div>
     )
