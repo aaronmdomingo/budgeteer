@@ -23,8 +23,14 @@ const Dashboard = (props: any) => {
         setToday(`${mm} / ${dd} / ${yyyy}`);
     }
 
+    const fetchData = () => {
+        fetch('http://localhost:4000/api/expense')
+            .then(res => console.log(res));
+    }
+
     useEffect(() => {
         getDate();
+        fetchData();
     }, []);
 
     if (!userCookie['current-user'] && !isLoggedIn) {
