@@ -23,6 +23,10 @@ const App: React.FC = () => {
     setIsLoggedIn(true);
   }
 
+  const logOutUser = () => {
+    setIsLoggedIn(false);
+  }
+
   const setMonth = (month: string) => {
     setCurrentMonth(month);
   }
@@ -31,11 +35,11 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route exact path='/'>
-         <LandingPage logInUser={logInUser} setMonth={setMonth} isLoggedIn={isLoggedIn}/>
+         <LandingPage logInUser={logInUser} setMonth={setMonth} isLoggedIn={isLoggedIn} logOutUser={logOutUser}/>
         </Route>
         <Route path='/dashboard/:user/:monthName'>
           <UserContext.Provider value={{ currentUser, currentMonth, setMonth }}>
-            <Dashboard isLoggedIn={isLoggedIn}/>
+            <Dashboard isLoggedIn={isLoggedIn} currentUser={currentUser} />
           </UserContext.Provider>
         </Route>
       </Switch>
