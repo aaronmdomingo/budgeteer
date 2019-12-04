@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { UserContext } from '../../App';
+import { useCookies } from 'react-cookie';
 
 const Month = (props: any) => {
     const { currentUser, currentMonth, setMonth } = useContext(UserContext);
+    const [ userCookie ] = useCookies(['current-user']);
 
     const goToMonth = () => {
         setMonth(props.month);
-        props.history.push(`/dashboard/${currentUser}/${props.month}`);
+        props.history.push(`/dashboard/${currentUser || userCookie['current-user'] }/${props.month}`);
         props.sideBarHandler();
     }
 
