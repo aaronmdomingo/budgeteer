@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import SideBar from './side-bar';
@@ -30,7 +30,7 @@ const Dashboard = (props: any) => {
                 timeout={500}
                 classNames="sidebar"
                 unmountOnExit>
-                <SideBar sideBarHandler={sideBarHandler} />
+                <SideBar sideBarHandler={sideBarHandler}/>
             </CSSTransition>
         </div>
     )
