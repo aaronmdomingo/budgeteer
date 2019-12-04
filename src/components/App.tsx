@@ -31,7 +31,7 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route exact path='/'>
-         <LandingPage logInUser={logInUser} setMonth={setMonth} />
+         <LandingPage logInUser={logInUser} setMonth={setMonth} isLoggedIn={isLoggedIn}/>
         </Route>
         <Route path='/dashboard/:user/:monthName'>
           <UserContext.Provider value={{ currentUser, currentMonth, setMonth }}>

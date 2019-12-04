@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import SideBar from './side-bar';
 import './_dashboard.scss';
-
+import { useCookies } from 'react-cookie';
 
 const Dashboard = (props: any) => {
     const [showSideBar, setShowSideBar] = useState(false);
+    const { isLoggedIn } = props;
 
     const sideBarHandler = () => {
         setShowSideBar(!showSideBar);
+    }
+
+    const [ userCookie ] = useCookies(['current-user']);
+
+    if (!userCookie['current-user'] || !isLoggedIn) {
+        return <Redirect to='/' />
     }
 
     return (
