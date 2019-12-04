@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import SideBar from './side-bar';
@@ -7,15 +7,27 @@ import { useCookies } from 'react-cookie';
 
 const Dashboard = (props: any) => {
     const [showSideBar, setShowSideBar] = useState(false);
-    const { isLoggedIn } = props;
-
+    const [today, setToday] = useState('');
+    const [userCookie] = useCookies(['current-user']);
+    const { isLoggedIn, currentUser } = props;
     const sideBarHandler = () => {
         setShowSideBar(!showSideBar);
     }
 
-    const [ userCookie ] = useCookies(['current-user']);
+    const getDate = () => {
+        const date = new Date();
+        const dd = String(date.getDate()).padStart(2, '0');
+        const mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = date.getFullYear();
 
-    if (!userCookie['current-user'] || !isLoggedIn) {
+        setToday(`${mm} / ${dd} / ${yyyy}`);
+    }
+
+    useEffect(() => {
+        getDate();
+    }, []);
+
+    if (!userCookie['current-user'] && !isLoggedIn) {
         return <Redirect to='/' />
     }
 
@@ -26,7 +38,12 @@ const Dashboard = (props: any) => {
                 <i className="fas fa-bars" onClick={sideBarHandler} ></i>
                 </div>
                 <div className="dashboard__header_user_info">
-
+                    <div className="dashboard__header_user_info-name">
+                        { currentUser || userCookie['current-user'] }
+                    </div>
+                    <div className="dashboard__header_user_info-date">
+                        { today }
+                    </div>
                 </div>
             </div>
             <div className="dashboard__main">
