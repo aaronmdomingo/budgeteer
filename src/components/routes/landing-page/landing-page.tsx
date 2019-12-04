@@ -11,13 +11,13 @@ const LandingPage = (props: any) => {
     const { isLoggedIn } = props;
     const hasCookie = userCookie['current-user'];
 
-    const clickHandler = () => {
-        setIsClicked(!isClicked);
+    const clickHandler = (bool: boolean) => {
+        setIsClicked(bool);
     }
 
     useEffect(() => {
         if (userCookie['current-user']) {
-            clickHandler();
+            clickHandler(true);
         }
     }, [userCookie])
 
@@ -35,7 +35,8 @@ const LandingPage = (props: any) => {
 
     const logOut = () => {
         removeUserCookie('current-user');
-        clickHandler();
+        props.logOutUser();
+        clickHandler(false);
     }
 
     return (
@@ -45,7 +46,7 @@ const LandingPage = (props: any) => {
             { isClicked
             ? ''
             :
-            <div className="landing__page_actions" onClick={clickHandler}>
+                <div className="landing__page_actions" onClick={() => clickHandler(true)}>
                 <div className="landing__page_button">
                     <span>Get Started</span>
                     <svg>
@@ -64,7 +65,7 @@ const LandingPage = (props: any) => {
                     <div className="landing__page_button" onClick={hasCookie || isLoggedIn  ? () => logIn(`${userCookie['current-user']}`) : () => {} }>
                         <span>
                             {
-                                hasCookie ? 'Dashboard' : 'Register'
+                                hasCookie || isLoggedIn ? 'Dashboard' : 'Register'
                             }
                         </span>
                         <svg>
@@ -75,7 +76,7 @@ const LandingPage = (props: any) => {
                     <div className="landing__page_button" onClick={hasCookie || isLoggedIn ? () => logOut() : () => {} }>
                         <span>
                             {
-                                hasCookie ? 'Log out' : 'Log in'
+                                hasCookie || isLoggedIn ? 'Log out' : 'Log in'
                             }
                         </span>
                         <svg>
@@ -88,7 +89,7 @@ const LandingPage = (props: any) => {
                         ? ''
                         : <div className="landing__page_login-guest">
                             Don't have an account?
-                            <span onClick={() => logIn('guest')} >Log in as guest</span>
+                            <span onClick={() => logIn('Guest')} >Log in as Guest</span>
                         </div>
                     }
                 </div>
