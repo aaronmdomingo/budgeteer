@@ -7,10 +7,11 @@ import './_landing-page.scss';
 
 const LandingPage = (props: any) => {
     const [ isClicked, setIsClicked ] = useState(false);
-    const [ userCookie, setUserCookie ] = useCookies(['current-user']);
+    const [ userCookie, setUserCookie, removeUserCookie ] = useCookies(['current-user']);
+    const hasCookie = userCookie['current-user'];
 
     const clickHandler = () => {
-        setIsClicked(true);
+        setIsClicked(!isClicked);
     }
 
     useEffect(() => {
@@ -29,6 +30,11 @@ const LandingPage = (props: any) => {
         props.setMonth(monthName);
         props.history.push(`/dashboard/${userName}/${monthName}`);
         setUserCookie('current-user', userName);
+    }
+
+    const logOut = () => {
+        removeUserCookie('current-user');
+        clickHandler();
     }
 
     return (
@@ -50,29 +56,40 @@ const LandingPage = (props: any) => {
             }
             <CSSTransition
                 in={isClicked}
-                appear={isClicked}
                 timeout={500}
                 classNames="fade"
                 unmountOnExit>
                 <div className="landing__page_login">
-                    <div className="landing__page_button">
-                        <span>Register</span>
+                    <div className="landing__page_button" onClick={hasCookie ? () => logIn(`${userCookie['current-user']}`) : () => {} }>
+                        <span>
+                            {
+                                hasCookie ? 'Dashboard' : 'Register'
+                            }
+                        </span>
                         <svg>
                             <polyline className="o1" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
                             <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
                         </svg>
                     </div>
-                    <div className="landing__page_button">
-                        <span>Log in</span>
+                    <div className="landing__page_button" onClick={ hasCookie ? () => logOut() : () => {} }>
+                        <span>
+                            {
+                                hasCookie ? 'Log out' : 'Log in'
+                            }
+                        </span>
                         <svg>
                             <polyline className="o1" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
                             <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
                         </svg>
                     </div>
-                    <div className="landing__page_login-guest">
-                        Don't have an account?
-                        <span onClick={() => logIn('guest')} >Log in as guest</span>
-                    </div>
+                    {
+                        hasCookie
+                        ? ''
+                        : <div className="landing__page_login-guest">
+                            Don't have an account?
+                            <span onClick={() => logIn('guest')} >Log in as guest</span>
+                        </div>
+                    }
                 </div>
             </CSSTransition>
         </div>

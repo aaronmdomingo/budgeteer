@@ -30,6 +30,7 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        transition: all 0.4s ease-out;
 
         &-guest {
             display: flex;
@@ -96,7 +97,7 @@
             .o1{
                 fill: rgba(#CC8110, 0.3);
             }
-            
+
             .o2 {
                 stroke-dashoffset: -420;
             }
