@@ -107,4 +107,59 @@
             }
         }
     }
+    &__table {
+        height: 43rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s;
+
+        &_container {
+            height: 38rem;
+            width: 20rem;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+
+
+            &-header {
+                height: 10%;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2.5rem;
+                margin: auto;
+                border-bottom: 2px solid #000000;
+            }
+
+            &-body {
+                height: 90%;
+                width: 100%;
+            }
+        }
+
+        &_expense {
+            width: 100%;
+            height: 5rem;
+            display: flex;
+
+            & > * {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &-date,
+            &-actions {
+                width: 15%;
+            }
+
+            &-description,
+            &-value {
+                width: 35%;
+            }
+
+        }
+    }
 }
