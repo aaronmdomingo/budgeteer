@@ -18,7 +18,7 @@ const userRouter = require('./routes/user');
 const monthRouter = require('./routes/month');
 
 
-app.use('/api/expense', expenseRouter);
+app.use('/api/expense/', expenseRouter);
 app.use('/api/user', userRouter);
 app.use('/api/month', monthRouter);
 
