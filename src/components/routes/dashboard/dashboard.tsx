@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { withRouter, Redirect, useParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import { useCookies } from 'react-cookie';
+import { UserContext } from '../../App';
+
 import SideBar from './side-bar';
 import './_dashboard.scss';
-import { useCookies } from 'react-cookie';
 
 const Dashboard = (props: any) => {
     const [showSideBar, setShowSideBar] = useState(false);
     const [today, setToday] = useState('');
+    const [expenseArr, setExpenseArr] = useState([]);
     const [userCookie] = useCookies(['current-user']);
-    const { isLoggedIn, currentUser } = props;
+    const { currentUser } = useContext(UserContext);
+    const { user, monthName } = useParams();
+    const { isLoggedIn } = props;
     const sideBarHandler = () => {
         setShowSideBar(!showSideBar);
     }
@@ -23,15 +28,19 @@ const Dashboard = (props: any) => {
         setToday(`${mm} / ${dd} / ${yyyy}`);
     }
 
-    const fetchData = () => {
-        fetch('http://localhost:4000/api/expense')
-            .then(res => console.log(res));
+    const fetchExpenses = () => {
+        fetch(`http://localhost:4000/api/expense/${user}/${monthName}`)
+            .then(res => res.json())
+            .then(res => {
+                setExpenseArr(res);
+            });
     }
 
     useEffect(() => {
+        console.log('im running');
         getDate();
-        fetchData();
-    }, []);
+        fetchExpenses();
+    }, [user, monthName]);
 
     if (!userCookie['current-user'] && !isLoggedIn) {
         return <Redirect to='/' />

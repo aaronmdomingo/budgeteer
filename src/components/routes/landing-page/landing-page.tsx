@@ -28,7 +28,6 @@ const LandingPage = (props: any) => {
         'July', 'August', 'September', 'October', 'November', 'December'];
         const monthName = monthsArr[month];
         props.logInUser(userName);
-        props.setMonth(monthName);
         props.history.push(`/dashboard/${userName}/${monthName}`);
         setUserCookie('current-user', userName);
     }
