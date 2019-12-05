@@ -29,7 +29,7 @@ const Dashboard = (props: any) => {
     }
 
     const fetchExpenses = () => {
-        fetch(`http://localhost:4000/api/expense/${user}/${monthName}`)
+        fetch(`/api/expense/${user}/${monthName}`)
             .then(res => res.json())
             .then(res => {
                 setExpenseArr(res);
@@ -44,6 +44,7 @@ const Dashboard = (props: any) => {
     if (!userCookie['current-user'] && !isLoggedIn) {
         return <Redirect to='/' />
     }
+
 
     return (
         <div className="dashboard">
