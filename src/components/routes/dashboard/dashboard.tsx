@@ -37,7 +37,6 @@ const Dashboard = (props: any) => {
     }
 
     useEffect(() => {
-        console.log('im running');
         getDate();
         fetchExpenses();
     }, [user, monthName]);
