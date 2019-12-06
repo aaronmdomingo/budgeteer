@@ -7,9 +7,12 @@ import './_dashboard.scss';
 
 import SideBar from './sub-components/side-bar';
 import Table from './sub-components/table';
+import ExpenseForm from './sub-components/expense-form';
+import Expense from './sub-components/expense';
 
 const Dashboard = (props: any) => {
     const [ showSideBar, setShowSideBar ] = useState(false);
+    const [ showExpenseForm, setShowExpenseForm ] = useState(false);
     const [ today, setToday ] = useState('');
     const [ expenseArr, setExpenseArr ] = useState(null);
     const [ isLoading, setIsLoading ] = useState(true);
@@ -17,8 +20,15 @@ const Dashboard = (props: any) => {
     const [userCookie] = useCookies(['current-user']);
     const { user, monthName } = useParams();
     const { isLoggedIn } = props;
+
     const sideBarHandler = () => {
         setShowSideBar(!showSideBar);
+        setShowExpenseForm(false);
+    }
+
+    const expenseFormHandler = () => {
+        setShowExpenseForm(!showExpenseForm);
+        setShowSideBar(false);
     }
 
     const getDate = () => {
@@ -69,7 +79,7 @@ const Dashboard = (props: any) => {
                 timeout={500}
                 classNames="fade"
                 unmountOnExit>
-                <Table expenseArr={expenseArr} monthName={monthName} />
+                <Table expenseArr={expenseArr} monthName={monthName} expenseFormHandler={expenseFormHandler}/>
             </CSSTransition>
             <CSSTransition
                 in={showSideBar}
@@ -77,6 +87,13 @@ const Dashboard = (props: any) => {
                 classNames="sidebar"
                 unmountOnExit>
                 <SideBar sideBarHandler={sideBarHandler}/>
+            </CSSTransition>
+            <CSSTransition
+                in={showExpenseForm}
+                timeout={500}
+                classNames="form"
+                unmountOnExit>
+                <ExpenseForm expenseFormHandler={expenseFormHandler}/>
             </CSSTransition>
         </div>
     )

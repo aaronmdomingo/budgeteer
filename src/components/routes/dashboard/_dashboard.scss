@@ -188,4 +188,55 @@
 
         }
     }
+
+    &__form {
+        position: absolute;
+        bottom: 0;
+        height: 5rem;
+        width: 100%;
+        background-color: #FFA114;
+        transition: all 0.4s ease-out;
+        display: flex;
+        align-items: center;
+
+        & > div {
+            height: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-text {
+            width: 80%;
+
+            & input {
+                width: 70%;
+                height: 80%;
+                border-radius: 20px;
+                border: none;
+                text-align: center;
+                transition: all 0.2s;
+
+                &:focus {
+                    width: 85%;
+                    outline: none;
+                }
+            }
+        }
+
+        &-button {
+            width: 20%;
+
+            & i {
+                font-size: 2rem;
+                margin-right: auto;
+            }
+        }
+
+        &-close {
+            position: absolute;
+            top: 5%;
+            right: 2.5%;
+        }
+    }
 }
