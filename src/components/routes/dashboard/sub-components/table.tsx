@@ -2,7 +2,7 @@ import React from 'react';
 import Expense from './expense';
 
 const Table = (props: any) => {
-    const { monthName, expenseArr } = props;
+    const { monthName, expenseArr, expenseFormHandler } = props;
 
     return (
         <div className="dashboard__table">
@@ -21,7 +21,7 @@ const Table = (props: any) => {
                 </div>
             </div>
             <div className="dashboard__table_footer">
-                <i className="far fa-plus-square"></i>
+                <i className="far fa-plus-square" onClick={() => expenseFormHandler()} ></i>
             </div>
         </div>
     )

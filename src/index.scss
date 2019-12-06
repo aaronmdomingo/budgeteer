@@ -43,3 +43,15 @@ code {
 .sidebar-exit {
   transform: translateX(-100%);
 }
+
+.form-enter {
+  transform: translateY(100%);
+}
+
+.form-enter.form-enter-active {
+  transform: translateY(0);
+}
+
+.form-exit {
+  transform: translateY(100%);
+}
