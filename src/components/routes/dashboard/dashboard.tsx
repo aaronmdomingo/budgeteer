@@ -9,10 +9,11 @@ import SideBar from './sub-components/side-bar';
 import Table from './sub-components/table';
 
 const Dashboard = (props: any) => {
-    const [showSideBar, setShowSideBar] = useState(false);
-    const [today, setToday] = useState('');
-    const [expenseArr, setExpenseArr] = useState(null);
+    const [ showSideBar, setShowSideBar ] = useState(false);
+    const [ today, setToday ] = useState('');
+    const [ expenseArr, setExpenseArr ] = useState(null);
     const [ isLoading, setIsLoading ] = useState(true);
+    const [ budget, setBudget ] = useState(0);
     const [userCookie] = useCookies(['current-user']);
     const { user, monthName } = useParams();
     const { isLoggedIn } = props;

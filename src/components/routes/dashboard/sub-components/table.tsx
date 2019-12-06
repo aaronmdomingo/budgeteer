@@ -20,6 +20,9 @@ const Table = (props: any) => {
                     }
                 </div>
             </div>
+            <div className="dashboard__table_footer">
+                <i className="far fa-plus-square"></i>
+            </div>
         </div>
     )
 }
