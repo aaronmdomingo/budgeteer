@@ -24,6 +24,11 @@
                 cursor: pointer;
                 font-size: 2rem;
                 color: #FFA114;
+                transition: all 0.2s;
+
+                &:hover {
+                    font-size: 2.25rem;
+                }
             }
         }
 
@@ -104,7 +109,83 @@
             & i {
                 cursor: pointer;
                 font-size: 2rem;
+                transition: all 0.2s;
+
+                &:hover {
+                    font-size: 2.25rem;
+                }
             }
+        }
+    }
+    &__table {
+        height: 43rem;
+        width: 100%;
+        transition: all 0.3s;
+
+        &_container {
+            height: 38rem;
+            width: 20rem;
+            margin: auto;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+
+
+            &-header {
+                height: 20%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2.5rem;
+            }
+
+            &-body {
+                height: 80%;
+                width: 100%;
+                overflow-y: scroll;
+            }
+        }
+
+        &_footer {
+            height: 5rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & > i {
+                cursor: pointer;
+                font-size: 2rem;
+                color: #FFA114;
+                transition: all 0.2s;
+
+                &:hover {
+                    font-size: 2.25rem;
+                }
+            }
+        }
+
+        &_expense {
+            width: 100%;
+            height: 5rem;
+            display: flex;
+
+            & > * {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &-date,
+            &-actions {
+                width: 15%;
+            }
+
+            &-description,
+            &-value {
+                width: 35%;
+            }
+
         }
     }
 }

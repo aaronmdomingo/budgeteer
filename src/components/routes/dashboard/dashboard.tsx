@@ -1,18 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter, Redirect, useParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
-import { UserContext } from '../../App';
 
-import SideBar from './side-bar';
 import './_dashboard.scss';
 
+import SideBar from './sub-components/side-bar';
+import Table from './sub-components/table';
+
 const Dashboard = (props: any) => {
-    const [showSideBar, setShowSideBar] = useState(false);
-    const [today, setToday] = useState('');
-    const [expenseArr, setExpenseArr] = useState([]);
+    const [ showSideBar, setShowSideBar ] = useState(false);
+    const [ today, setToday ] = useState('');
+    const [ expenseArr, setExpenseArr ] = useState(null);
+    const [ isLoading, setIsLoading ] = useState(true);
+    const [ budget, setBudget ] = useState(0);
     const [userCookie] = useCookies(['current-user']);
-    const { currentUser } = useContext(UserContext);
     const { user, monthName } = useParams();
     const { isLoggedIn } = props;
     const sideBarHandler = () => {
@@ -22,21 +24,23 @@ const Dashboard = (props: any) => {
     const getDate = () => {
         const date = new Date();
         const dd = String(date.getDate()).padStart(2, '0');
-        const mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const mm = String(date.getMonth() + 1).padStart(2, '0'); 
         const yyyy = date.getFullYear();
 
         setToday(`${mm} / ${dd} / ${yyyy}`);
     }
 
     const fetchExpenses = () => {
-        fetch(`http://localhost:4000/api/expense/${user}/${monthName}`)
+        fetch(`/api/expense/${user}/${monthName}`)
             .then(res => res.json())
             .then(res => {
                 setExpenseArr(res);
+                setIsLoading(false);
             });
     }
 
     useEffect(() => {
+        setIsLoading(true);
         getDate();
         fetchExpenses();
     }, [user, monthName]);
@@ -53,16 +57,20 @@ const Dashboard = (props: any) => {
                 </div>
                 <div className="dashboard__header_user_info">
                     <div className="dashboard__header_user_info-name">
-                        { currentUser || userCookie['current-user'] }
+                        { user }
                     </div>
                     <div className="dashboard__header_user_info-date">
                         { today }
                     </div>
                 </div>
             </div>
-            <div className="dashboard__main">
-
-            </div>
+            <CSSTransition
+                in={!isLoading}
+                timeout={500}
+                classNames="fade"
+                unmountOnExit>
+                <Table expenseArr={expenseArr} monthName={monthName} />
+            </CSSTransition>
             <CSSTransition
                 in={showSideBar}
                 timeout={500}
