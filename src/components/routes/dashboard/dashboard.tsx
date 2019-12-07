@@ -8,7 +8,6 @@ import './_dashboard.scss';
 import SideBar from './sub-components/side-bar';
 import Table from './sub-components/table';
 import ExpenseForm from './sub-components/expense-form';
-import Expense from './sub-components/expense';
 
 const Dashboard = (props: any) => {
     const [ showSideBar, setShowSideBar ] = useState(false);
@@ -47,6 +46,16 @@ const Dashboard = (props: any) => {
                 setExpenseArr(res);
                 setIsLoading(false);
             });
+    }
+
+    const addExpense = (expenseObj: object) => {
+        fetch(`/api/expense/${user}/${monthName}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(expenseObj) })
+        .then(res => res.json())
+        .then(res => {
+            if (res.success) {
+                fetchExpenses();
+            }
+        });
     }
 
     useEffect(() => {
@@ -93,7 +102,7 @@ const Dashboard = (props: any) => {
                 timeout={500}
                 classNames="form"
                 unmountOnExit>
-                <ExpenseForm expenseFormHandler={expenseFormHandler}/>
+                <ExpenseForm expenseFormHandler={expenseFormHandler} addExpense={addExpense} />
             </CSSTransition>
         </div>
     )
