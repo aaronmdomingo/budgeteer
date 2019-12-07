@@ -17,9 +17,6 @@ const Expense = (props: any) => {
             <div className="dashboard__table_expense-value">
                 { expense.value }
             </div>
-            <div className="dashboard__table_expense-actions">
-                <i className="fas fa-info-circle"></i>
-            </div>
         </div>
     )
 }

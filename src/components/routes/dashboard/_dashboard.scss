@@ -176,14 +176,13 @@
                 align-items: center;
             }
 
-            &-date,
-            &-actions {
-                width: 15%;
+            &-date {
+                width: 20%;
             }
 
             &-description,
             &-value {
-                width: 35%;
+                width: 40%;
             }
 
         }
@@ -206,8 +205,9 @@
             align-items: center;
         }
 
-        &-text {
-            width: 80%;
+        &-text,
+        &-value {
+            width: 40%;
 
             & input {
                 width: 70%;
@@ -226,10 +226,13 @@
 
         &-button {
             width: 20%;
+            
+            & button {
+                margin-right: auto;
+            }
 
             & i {
                 font-size: 2rem;
-                margin-right: auto;
             }
         }
 

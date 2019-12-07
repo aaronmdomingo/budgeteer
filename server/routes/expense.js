@@ -14,4 +14,26 @@ router.get('/:user/:month', (req, res) => {
     })
 })
 
+router.post('/:user/:month', (req, res) => {
+    const userName = req.params.user;
+    const month = req.params.month;
+    const expense = new Expense({ 
+        user_name: userName,
+        month: month,
+        date: new Date(),
+        description: req.body.description,
+        value: req.body.value
+     })
+
+     expense.save((err, value) => {
+         if (!err) {
+             res.send({
+                 success: "true"
+             })
+         } else {
+             res.send(err);
+         }
+     })
+})
+
 module.exports = router;
