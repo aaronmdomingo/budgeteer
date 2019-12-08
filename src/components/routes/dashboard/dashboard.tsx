@@ -88,7 +88,7 @@ const Dashboard = (props: any) => {
                 timeout={500}
                 classNames="fade"
                 unmountOnExit>
-                <Table expenseArr={expenseArr} monthName={monthName} expenseFormHandler={expenseFormHandler}/>
+                <Table expenseArr={expenseArr} monthName={monthName} isLoading={isLoading} expenseFormHandler={expenseFormHandler}/>
             </CSSTransition>
             <CSSTransition
                 in={showSideBar}

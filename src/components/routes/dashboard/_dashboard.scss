@@ -143,6 +143,10 @@
                 height: 80%;
                 width: 100%;
                 overflow-y: scroll;
+
+                & .dashboard__table_expense_container:nth-child(even) {
+                    background-color: rgba(0,0,0,.05);
+                }
             }
         }
 
