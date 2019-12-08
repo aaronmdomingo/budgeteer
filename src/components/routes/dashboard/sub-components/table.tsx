@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Expense from './expense';
 import { animateScroll } from 'react-scroll';
 
 const Table = (props: any) => {
     const { monthName, expenseArr, expenseFormHandler } = props;
+    const [ currentTab, setCurrentTab ] = useState(0);
 
     useEffect(() => {
         animateScroll.scrollToBottom({ duration: 1000, containerId: 'dashboard--table' });
     }, [expenseArr])
+
+    const toggleView = (id: number) => {
+        currentTab === id ? setCurrentTab(0) : setCurrentTab(id);
+    }
 
     return (
         <div className="dashboard__table">
@@ -16,13 +21,16 @@ const Table = (props: any) => {
                     { monthName }
                 </div>
                 <div className="dashboard__table_container-body" id="dashboard--table">
-                    {
+                    { 
                         expenseArr.map((e: any) => {
                             return <Expense key={e._id}
+                                id={e._id}
                                 expense={e}
+                                currentTab={currentTab}
+                                toggleView={toggleView}
                             />
                         })
-                    }
+                     }
                 </div>
             </div>
             <div className="dashboard__table_footer">
