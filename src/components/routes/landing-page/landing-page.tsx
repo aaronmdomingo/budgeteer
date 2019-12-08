@@ -8,7 +8,7 @@ import './_landing-page.scss';
 const LandingPage = (props: any) => {
     const [ isClicked, setIsClicked ] = useState(false);
     const [ userCookie, setUserCookie, removeUserCookie ] = useCookies(['current-user']);
-    const { isLoggedIn } = props;
+    const { isLoggedIn, logOutUser } = props;
     const hasCookie = userCookie['current-user'];
 
     const clickHandler = (bool: boolean) => {
@@ -34,7 +34,7 @@ const LandingPage = (props: any) => {
 
     const logOut = () => {
         removeUserCookie('current-user');
-        props.logOutUser();
+        logOutUser();
         clickHandler(false);
     }
 
