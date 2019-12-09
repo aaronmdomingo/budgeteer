@@ -3,7 +3,7 @@ import Expense from './expense';
 import { animateScroll } from 'react-scroll';
 
 const Table = (props: any) => {
-    const { monthName, expenseArr, expenseFormHandler, isLoading } = props;
+    const { monthName, expenseArr, expenseFormHandler, isLoading, deleteExpense } = props;
     const [ currentTab, setCurrentTab ] = useState(0);
 
     useEffect(() => {
@@ -21,13 +21,14 @@ const Table = (props: any) => {
                     { monthName }
                 </div>
                 <div className="dashboard__table_container-body" id="dashboard--table">
-                    { 
+                    {
                         expenseArr.map((e: any) => {
                             return <Expense key={e._id}
                                 id={e._id}
                                 expense={e}
                                 currentTab={currentTab}
                                 toggleView={toggleView}
+                                deleteExpense={deleteExpense}
                             />
                         })
                      }
