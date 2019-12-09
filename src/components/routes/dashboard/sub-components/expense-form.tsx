@@ -38,10 +38,10 @@ const ExpenseForm = (props: any) => {
                 <i className="far fa-times-circle"></i>
             </span>
             <div className="dashboard__form-text">
-                <input type="text" name="text" placeholder='Description' value={description} onChange={handleChange} autoComplete="off"/>
+                <input type="text" name="text" placeholder='Description' value={description} onChange={handleChange} autoComplete="off" required/>
             </div>
             <div className="dashboard__form-value">
-                <input type="number"  name="value" min="0" placeholder='Value' value={value} onChange={handleChange}/>
+                <input type="number"  name="value" min="0" placeholder='Value' value={value} onChange={handleChange} required/>
             </div>
             <div className="dashboard__form-button">
                 <button type="submit">
