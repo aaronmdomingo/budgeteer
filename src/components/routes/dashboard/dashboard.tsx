@@ -71,6 +71,17 @@ const Dashboard = (props: any) => {
         .catch(err => alert(err));
     }
 
+    const updateExpense = (expenseObj: object) => {
+        fetch(`/api/expense/${user}/${monthName}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(expenseObj) })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    fetchExpenses();
+                }
+            })
+            .catch(err => alert(err));
+    }
+
     useEffect(() => {
         setIsLoading(true);
         getDate();
@@ -105,7 +116,8 @@ const Dashboard = (props: any) => {
                 monthName={monthName}
                 isLoading={isLoading}
                 expenseFormHandler={expenseFormHandler}
-                deleteExpense={deleteExpense}/>
+                deleteExpense={deleteExpense}
+                updateExpense={updateExpense}/>
             </CSSTransition>
             <CSSTransition
                 in={showSideBar}
