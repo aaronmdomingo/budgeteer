@@ -7,6 +7,7 @@ const Table = (props: any) => {
     const [ currentTab, setCurrentTab ] = useState(0);
 
     useEffect(() => {
+        setCurrentTab(0);
         animateScroll.scrollToBottom({ duration: 1500, containerId: 'dashboard--table' });
     }, [isLoading, expenseArr])
 
