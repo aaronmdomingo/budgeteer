@@ -2,14 +2,45 @@ import React, { useState, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 const SubExpense = (props: any) => {
-    const { match, deleteHandler } = props;
+    const { match, deleteHandler, expense, updateExpense, id } = props;
     const [ inEdit, setInEdit ] = useState(false);
     const [ inDelete, setInDelete ] = useState(false);
+    const [ updatedDescription, setUpdatedDescription ] = useState('');
+    const [ updatedValue, setUpdatedValue ] = useState('');
 
     useEffect(() => {
         setInEdit(false);
         setInDelete(false);
+        setUpdatedDescription(expense.description);
+        setUpdatedValue(expense.value);
     }, [match])
+
+    const handleChange = (event: any) => {
+        switch (event.target.name) {
+            case 'description':
+                setUpdatedDescription(event.target.value);
+                break;
+            case 'value':
+                setUpdatedValue(event.target.value);
+                break;
+        }
+    }
+
+    const handleUpdate = (event: any) => {
+        event.preventDefault();
+        const updateInfo = {
+            id : id,
+            description: updatedDescription,
+            value: parseInt(updatedValue)
+        }
+        updateExpense(updateInfo);
+        handleClear();
+    }
+
+    const handleClear = () => {
+        setUpdatedDescription('');
+        setUpdatedValue('');
+    }
 
     return (
         <div className={`dashboard__table_expense-sub ${ match ? 'open' : ''  }`}>
@@ -18,8 +49,19 @@ const SubExpense = (props: any) => {
                 timeout={500}
                 classNames="update"
                 unmountOnExit>
-                <form className={'dashboard__table_expense-form'}>
-
+                <form className={'dashboard__table_expense-form'} onSubmit={handleUpdate} >
+                    <div className="text">
+                        <input className="description" value={updatedDescription} type="text" name="description" placeholder="description" onChange={handleChange} autoComplete="off" min="1" required />
+                        <input className="value" value={updatedValue} type="number" name="value" placeholder="value" onChange={handleChange} required/>
+                    </div>
+                    <div>
+                        <div className="button button-mini button-update">
+                            <button type="submit"> Update </button>
+                        </div>
+                        <div className="button button-mini" onClick={() => setInEdit(false)}>
+                            Cancel
+                        </div>
+                    </div>
                 </form>
             </CSSTransition>
             <CSSTransition
