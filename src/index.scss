@@ -32,16 +32,34 @@ code {
   display: none;
 }
 
-.sidebar-enter {
+.sidebar-enter,
+.update-enter {
   transform: translateX(-100%);
 }
 
-.sidebar-enter.sidebar-enter-active {
+.sidebar-enter.sidebar-enter-active,
+.update-enter.update-enter-active {
   transform: translateX(0);
 }
 
 .sidebar-exit {
   transform: translateX(-100%);
+}
+
+.update-exit {
+  display: none;
+}
+
+.delete-enter {
+  transform: translateX(100%);
+}
+
+.delete-enter.delete-enter-active {
+  transform: translateX(0);
+}
+
+.delete-exit {
+  display: none;
 }
 
 .form-enter {
