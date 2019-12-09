@@ -264,20 +264,18 @@
                     border: 0.2em solid red;
                 }
 
+                & .button-update {
+                    color: #066130;
+                    border: 0.2em solid #066130;
+                }
+
                 & .button-mini {
                     height: 0.5rem;
                     width: 1.5rem;
                 }
             }
 
-            &-form {
-                transition: all 0.4s ease;
-                display: flex;
-                height: 60%;
-                width: 55%;
-                background-color: #fff;
-            }
-
+            &-form,
             &-confirm {
                 transition: all 0.4s ease;
                 display: flex;
@@ -286,6 +284,11 @@
                 height: 100%;
                 width: 100%;
 
+                & .text {
+                    padding: 0 1rem;
+                    text-align: center;
+                }
+
                 & div {
                     height: 50%;
                     display: flex;
@@ -293,9 +296,26 @@
                     align-items: center;
                 }
 
-                & .text {
-                    padding: 0 1rem;
+                & input {
+                    height: 70%;
+                    border-radius: 20px;
+                    border: none;
                     text-align: center;
+                    transition: all 0.2s;
+
+                    &.description {
+                        width: 60%;
+                    }
+
+                    &.value {
+                        width: 30%;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border: none;
+                        box-shadow: none;
+                    }
                 }
             }
         }
