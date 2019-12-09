@@ -3,10 +3,11 @@ import Expense from './expense';
 import { animateScroll } from 'react-scroll';
 
 const Table = (props: any) => {
-    const { monthName, expenseArr, expenseFormHandler, isLoading, deleteExpense } = props;
+    const { monthName, expenseArr, expenseFormHandler, isLoading, deleteExpense, updateExpense } = props;
     const [ currentTab, setCurrentTab ] = useState(0);
 
     useEffect(() => {
+        setCurrentTab(0);
         animateScroll.scrollToBottom({ duration: 1500, containerId: 'dashboard--table' });
     }, [isLoading, expenseArr])
 
@@ -29,6 +30,7 @@ const Table = (props: any) => {
                                 currentTab={currentTab}
                                 toggleView={toggleView}
                                 deleteExpense={deleteExpense}
+                                updateExpense={updateExpense}
                             />
                         })
                      }

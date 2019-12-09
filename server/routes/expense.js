@@ -25,7 +25,7 @@ router.post('/:user/:month', (req, res) => {
         value: req.body.value
      })
 
-     expense.save((err, value) => {
+     expense.save((err, val) => {
          if (!err) {
              res.send({
                  success: "true"
@@ -40,6 +40,18 @@ router.delete('/:user/:month/:id', (req, res) => {
     const id = req.params.id;
 
     Expense.deleteOne({ _id: id }, (err) => {
+        if (!err) {
+            res.send({
+                success: "true"
+            })
+        } else {
+            res.send(err);
+        }
+    })
+})
+
+router.patch('/:user/:month', (req, res) => {
+    Expense.updateOne({ _id: req.body.id }, {description: req.body.description, value: req.body.value}, (err, val) => {
         if (!err) {
             res.send({
                 success: "true"
