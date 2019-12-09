@@ -174,6 +174,7 @@
         }
 
         &_expense {
+            cursor: pointer;
             width: 100%;
             height: 5rem;
             display: flex;
@@ -199,12 +200,68 @@
                 width: 100%;
                 transition: height 0.4s ease;
                 background-color: #FFA114;
-                
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                overflow: hidden;
+
                 &.open {
                     height: 5rem;
                 }
-            }
 
+                & > .button {
+                        cursor: pointer;
+                        position: relative;
+                        background: none;
+                        color: #fff;
+                        text-decoration: none;
+                        border: 0.2em solid #fff;
+                        padding: 0.5em 1em;
+                        transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+
+                        &::before {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            width: 10%;
+                            background: #FFA114;
+                            height: 0.3em;
+                            right: 20%;
+                            top: -0.21em;
+                            transform: skewX(-45deg);
+                            -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                            transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                        }
+
+                        &::after {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            width: 10%;
+                            background: #FFA114;
+                            height: 0.3em;
+                            left: 20%;
+                            bottom: -0.25em;
+                            transform: skewX(45deg);
+                            -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+                            transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                        }
+
+                        &:hover {
+                            transform: scale(1.1);
+                            &::before {
+                            right: 80%;
+                            }
+                            &::after {
+                            left: 80%;
+                            }
+                        }
+                    }
+                & > .button-delete {
+                    color: red;
+                    border: 0.2em solid red;
+                }
+            }
         }
     }
 
@@ -246,13 +303,26 @@
 
         &-button {
             width: 20%;
-            
+            padding: 0.5rem;
+
             & button {
                 margin-right: auto;
+                background-color: transparent;
+                border: none;
+
+                &:focus {
+                    outline: none
+                }
             }
 
             & i {
+                cursor: pointer;
                 font-size: 2rem;
+                transition: all 0.2s;
+
+                &:hover {
+                    font-size: 2.25rem;
+                }
             }
         }
 
@@ -260,6 +330,15 @@
             position: absolute;
             top: 5%;
             right: 2.5%;
+
+            & i {
+                cursor: pointer;
+                transition: all 0.2s;
+
+                &:hover {
+                    font-size: 1.25rem;
+                }
+            }
         }
     }
 }

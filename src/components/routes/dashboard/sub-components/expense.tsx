@@ -2,13 +2,17 @@ import React from 'react';
 import SubExpense from './expense-sub';
 
 const Expense = (props: any) => {
-    const { expense, toggleView, id, currentTab } = props;
+    const { expense, toggleView, id, currentTab, deleteExpense } = props;
 
     const date = expense.date.split('T')[0].split('-');
     const formattedDate = `${date[1]}/${date[2]}`;
 
     const clickHandler = () => {
         toggleView(id);
+    }
+
+    const deleteHandler = () => {
+        deleteExpense(id);
     }
 
     return (
@@ -24,9 +28,9 @@ const Expense = (props: any) => {
                     { expense.value }
                 </div>
             </div>
-            <SubExpense 
-            currentTab={currentTab}
-            id={id}
+            <SubExpense
+            match = { currentTab === id }
+            deleteHandler = { deleteHandler }
             />
         </div>
     )
