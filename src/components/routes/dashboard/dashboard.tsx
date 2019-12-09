@@ -33,7 +33,7 @@ const Dashboard = (props: any) => {
     const getDate = () => {
         const date = new Date();
         const dd = String(date.getDate()).padStart(2, '0');
-        const mm = String(date.getMonth() + 1).padStart(2, '0'); 
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
         const yyyy = date.getFullYear();
 
         setToday(`${mm} / ${dd} / ${yyyy}`);
@@ -45,7 +45,8 @@ const Dashboard = (props: any) => {
             .then(res => {
                 setExpenseArr(res);
                 setIsLoading(false);
-            });
+            })
+            .catch(err => alert(err));
     }
 
     const addExpense = (expenseObj: object) => {
@@ -55,7 +56,19 @@ const Dashboard = (props: any) => {
             if (res.success) {
                 fetchExpenses();
             }
-        });
+        })
+        .catch(err => alert(err));
+    }
+
+    const deleteExpense = (expenseId: string) => {
+        fetch(`/api/expense/${user}/${monthName}/${expenseId}`, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(res => {
+            if (res.success) {
+                fetchExpenses();
+            }
+        })
+        .catch(err => alert(err));
     }
 
     useEffect(() => {
@@ -88,7 +101,11 @@ const Dashboard = (props: any) => {
                 timeout={500}
                 classNames="fade"
                 unmountOnExit>
-                <Table expenseArr={expenseArr} monthName={monthName} isLoading={isLoading} expenseFormHandler={expenseFormHandler}/>
+                <Table expenseArr={expenseArr}
+                monthName={monthName}
+                isLoading={isLoading}
+                expenseFormHandler={expenseFormHandler}
+                deleteExpense={deleteExpense}/>
             </CSSTransition>
             <CSSTransition
                 in={showSideBar}
