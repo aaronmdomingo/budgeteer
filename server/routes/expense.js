@@ -17,7 +17,7 @@ router.get('/:user/:month', (req, res) => {
 router.post('/:user/:month', (req, res) => {
     const userName = req.params.user;
     const month = req.params.month;
-    const expense = new Expense({ 
+    const expense = new Expense({
         user_name: userName,
         month: month,
         date: new Date(),
@@ -34,6 +34,20 @@ router.post('/:user/:month', (req, res) => {
              res.send(err);
          }
      })
+})
+
+router.delete('/:user/:month/:id', (req, res) => {
+    const id = req.params.id;
+
+    Expense.deleteOne({ _id: id }, (err) => {
+        if (!err) {
+            res.send({
+                success: "true"
+            })
+        } else {
+            res.send(err);
+        }
+    })
 })
 
 module.exports = router;
