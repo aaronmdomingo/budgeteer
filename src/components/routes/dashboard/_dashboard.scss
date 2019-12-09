@@ -209,7 +209,7 @@
                     height: 5rem;
                 }
 
-                & > .button {
+                & .button {
                         cursor: pointer;
                         position: relative;
                         background: none;
@@ -218,6 +218,8 @@
                         border: 0.2em solid #fff;
                         padding: 0.5em 1em;
                         transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                        width: 4rem;
+                        text-align: center;
 
                         &::before {
                             content: "";
@@ -257,9 +259,43 @@
                             }
                         }
                     }
-                & > .button-delete {
+                & .button-delete {
                     color: red;
                     border: 0.2em solid red;
+                }
+
+                & .button-mini {
+                    height: 0.5rem;
+                    width: 1.5rem;
+                }
+            }
+
+            &-form {
+                transition: all 0.4s ease;
+                display: flex;
+                height: 60%;
+                width: 55%;
+                background-color: #fff;
+            }
+
+            &-confirm {
+                transition: all 0.4s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                height: 100%;
+                width: 100%;
+
+                & div {
+                    height: 50%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                }
+
+                & .text {
+                    padding: 0 1rem;
+                    text-align: center;
                 }
             }
         }
