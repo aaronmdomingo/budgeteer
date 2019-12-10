@@ -15,7 +15,6 @@ const Dashboard = (props: any) => {
     const [ today, setToday ] = useState('');
     const [ expenseArr, setExpenseArr ] = useState(null);
     const [ isLoading, setIsLoading ] = useState(true);
-    const [ budget, setBudget ] = useState(0);
     const [userCookie] = useCookies(['current-user']);
     const { user, monthName } = useParams();
     const { isLoggedIn } = props;
@@ -114,6 +113,7 @@ const Dashboard = (props: any) => {
                 unmountOnExit>
                 <Table expenseArr={expenseArr}
                 monthName={monthName}
+                user={user}
                 isLoading={isLoading}
                 expenseFormHandler={expenseFormHandler}
                 deleteExpense={deleteExpense}
