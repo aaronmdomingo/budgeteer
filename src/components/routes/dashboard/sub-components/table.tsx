@@ -59,6 +59,8 @@ const Table = (props: any) => {
                 setHeaderClass('really-red');
                 break;
             default:
+                setStatus('');
+                setHeaderClass('');
         }
     }
 
