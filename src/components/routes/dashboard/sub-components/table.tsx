@@ -8,6 +8,7 @@ const Table = (props: any) => {
     const [ budget, setBudget ] = useState(0);
     const [ expense, setExpense ] = useState(0);
     const [ status, setStatus ] = useState('');
+    const [ headerClass, setHeaderClass ] = useState('');
 
     useEffect(() => {
         setCurrentTab(0);
@@ -23,11 +24,42 @@ const Table = (props: any) => {
                 expenseArr.forEach((e :any) => totalExpense += e.value)
                 setExpense(totalExpense);
                 setBudget(res.current_budget - totalExpense);
+                changeStatus(totalExpense / res.current_budget);
             })
             .catch(err => alert(err));
     }
 
     const changeStatus = (num: number) => {
+        switch(true) {
+            case num === 0:
+                setStatus('Perfect. Clean Slate!');
+                setHeaderClass('white');
+                break;
+            case num < .20:
+                setStatus(`You're doing great, keep up the good work!`);
+                setHeaderClass('green');
+                break;
+            case num < .40:
+                setStatus(`You're still doing okay, you got this!`);
+                setHeaderClass('green-orange');
+                break;
+            case num < .60:
+                setStatus(`Around halfway to your budget, hang in there!`);
+                setHeaderClass('orange');
+                break;
+            case num < .80:
+                setStatus(`Got a little bit of wiggle room left!`);
+                setHeaderClass('orange-red');
+                break;
+            case num < 1:
+                setStatus(`You're cutting it really close now!`);
+                setHeaderClass('red');
+            case num > 1:
+                setStatus(`Oh no! You went over for this month!`);
+                setHeaderClass('really-red');
+                break;
+            default:
+        }
     }
 
     const toggleView = (id: number) => {
@@ -37,7 +69,7 @@ const Table = (props: any) => {
     return (
         <div className="dashboard__table">
             <div className="dashboard__table_container">
-                <div className="dashboard__table_container-header">
+                <div className={`dashboard__table_container-header ${headerClass}`}>
                     <div className="month">
                     { monthName }
                     </div>
@@ -58,7 +90,7 @@ const Table = (props: any) => {
                         </div>
                     </div>
                     <div className="status">
-                        You're doing a good job so far, keep at it!
+                        { status }
                     </div>
                 </div>
                 <div className="dashboard__table_container-body" id="dashboard--table">
