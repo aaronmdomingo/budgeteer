@@ -14,22 +14,82 @@ code {
     monospace;
 }
 
+/**** BUTTONS ****/
+
+.button-table {
+  cursor: pointer;
+  position: relative;
+  background: none;
+  color: #fff;
+  text-decoration: none;
+  border: 0.2em solid #fff;
+  padding: 0.5em 1em;
+  transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  width: 4rem;
+  text-align: center;
+
+  &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 10%;
+      background: #FFA114;
+      height: 0.3em;
+      right: 20%;
+      top: -0.21em;
+      transform: skewX(-45deg);
+      -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+      transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 10%;
+      background: #FFA114;
+      height: 0.3em;
+      left: 20%;
+      bottom: -0.25em;
+      transform: skewX(45deg);
+      -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+      transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &:hover {
+      transform: scale(1.1);
+      &::before {
+      right: 80%;
+      }
+      &::after {
+      left: 80%;
+      }
+  }
+}
+
 /**** ANIMATIONS ****/
 
-.fade-enter {
+.fade-enter,
+.modal-fade-enter {
   opacity: 0.01;
 }
 
-.fade-enter.fade-enter-active {
+.fade-enter.fade-enter-active,
+.modal-fade-enter.modal-fade-enter-active {
   opacity: 1;
 }
 
-.fade-leave {
+.fade-leave,
+.modal-fade-leave {
   opacity: 1;
 }
 
 .fade-exit {
   display: none;
+}
+
+.modal-fade-exit {
+  opacity: 0;
 }
 
 .sidebar-enter,
@@ -72,4 +132,22 @@ code {
 
 .form-exit {
   transform: translateY(100%);
+}
+
+.alert-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.alert-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.alert-exit {
+  opacity: 1;
+}
+.alert-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }
