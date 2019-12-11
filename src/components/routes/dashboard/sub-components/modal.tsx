@@ -1,0 +1,36 @@
+import React, { useEffect, useState } from 'react';
+
+const Modal = (props: any) => {
+    const { setShowModal, monthName, budget } = props;
+    const [ updatedBudget, setUpdatedBudget ] = useState(budget);
+
+    const handleChange = (event: any) => {
+        setUpdatedBudget(event.target.value);
+    }
+
+    return (
+        <div className="dashboard__modal">
+            <form className="dashboard__modal_container">
+                <div className="text">
+                    Current budget for the month of:
+                </div>
+                <div className="month">
+                    {monthName}
+                </div>
+                <div className="value">
+                    <input type="number" min="0" className="input" value={updatedBudget} onChange={handleChange} />
+                </div>
+                <div className="button">
+                    <div className="button-table button-update">
+                        <button type="submit">Update</button>
+                    </div>
+                    <div className="button-table button-cancel" onClick={() => setShowModal(false)}>
+                        Cancel
+                    </div>
+                </div>
+            </form>
+        </div>
+    )
+}
+
+export default Modal;
