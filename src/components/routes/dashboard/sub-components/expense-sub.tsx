@@ -5,14 +5,12 @@ const SubExpense = (props: any) => {
     const { match, deleteHandler, expense, updateExpense, id } = props;
     const [ inEdit, setInEdit ] = useState(false);
     const [ inDelete, setInDelete ] = useState(false);
-    const [ updatedDescription, setUpdatedDescription ] = useState('');
-    const [ updatedValue, setUpdatedValue ] = useState('');
+    const [ updatedDescription, setUpdatedDescription ] = useState(expense.description);
+    const [ updatedValue, setUpdatedValue ] = useState(expense.value);
 
     useEffect(() => {
         setInEdit(false);
         setInDelete(false);
-        setUpdatedDescription(expense.description);
-        setUpdatedValue(expense.value);
     }, [match])
 
     const handleChange = (event: any) => {
@@ -55,10 +53,10 @@ const SubExpense = (props: any) => {
                         <input className="value" value={updatedValue} type="number" name="value" placeholder="value" onChange={handleChange} required/>
                     </div>
                     <div>
-                        <div className="button button-mini button-update">
+                        <div className="button-table button-mini button-update">
                             <button type="submit"> Update </button>
                         </div>
-                        <div className="button button-mini" onClick={() => setInEdit(false)}>
+                        <div className="button-table button-mini" onClick={() => setInEdit(false)}>
                             Cancel
                         </div>
                     </div>
@@ -69,14 +67,14 @@ const SubExpense = (props: any) => {
                 timeout={500}
                 classNames="fade"
                 unmountOnExit>
-                <div className="button" onClick={() => setInEdit(true)}> Update </div>
+                <div className="button-table" onClick={() => setInEdit(true)}> Update </div>
             </CSSTransition>
             <CSSTransition
                 in={!inEdit && !inDelete}
                 timeout={500}
                 classNames="fade"
                 unmountOnExit>
-                <div className="button button-delete" onClick={() => setInDelete(true)}> Delete </div>
+                <div className="button-table button-delete" onClick={() => setInDelete(true)}> Delete </div>
             </CSSTransition>
             <CSSTransition
                 in={inDelete}
@@ -88,10 +86,10 @@ const SubExpense = (props: any) => {
                         Are you sure you want to delete this expense?
                     </div>
                     <div>
-                        <div className="button button-mini button-delete" onClick={() => deleteHandler()}>
+                        <div className="button-table button-mini button-delete" onClick={() => deleteHandler()}>
                             Yes
                         </div>
-                        <div className="button button-mini" onClick={() => setInDelete(false)}>
+                        <div className="button-table button-mini" onClick={() => setInDelete(false)}>
                             No
                         </div>
                     </div>
