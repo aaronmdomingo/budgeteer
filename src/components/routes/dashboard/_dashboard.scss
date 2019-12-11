@@ -4,7 +4,7 @@
     background-size: cover;
     background-position: center;
     overflow: scroll;
-
+    position: relative;
 
     &__header {
         height: 7.5rem;
@@ -143,6 +143,15 @@
                 border-top-right-radius: 5px;
                 transition: all 0.2s;
 
+                & .month {
+                    cursor: pointer;
+                    transition: inherit;
+
+                    &:hover {
+                        color: #FFA114;
+                    }
+                }
+
                 & .budget,
                 & .total-expense {
                     width: 100%;
@@ -278,56 +287,6 @@
                     height: 5rem;
                 }
 
-                & .button {
-                        cursor: pointer;
-                        position: relative;
-                        background: none;
-                        color: #fff;
-                        text-decoration: none;
-                        border: 0.2em solid #fff;
-                        padding: 0.5em 1em;
-                        transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
-                        width: 4rem;
-                        text-align: center;
-
-                        &::before {
-                            content: "";
-                            display: block;
-                            position: absolute;
-                            width: 10%;
-                            background: #FFA114;
-                            height: 0.3em;
-                            right: 20%;
-                            top: -0.21em;
-                            transform: skewX(-45deg);
-                            -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
-                            transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
-                        }
-
-                        &::after {
-                            content: "";
-                            display: block;
-                            position: absolute;
-                            width: 10%;
-                            background: #FFA114;
-                            height: 0.3em;
-                            left: 20%;
-                            bottom: -0.25em;
-                            transform: skewX(45deg);
-                            -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
-                            transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
-                        }
-
-                        &:hover {
-                            transform: scale(1.1);
-                            &::before {
-                            right: 80%;
-                            }
-                            &::after {
-                            left: 80%;
-                            }
-                        }
-                    }
                 & .button-delete {
                     color: red;
                     border: 0.2em solid red;
@@ -336,6 +295,14 @@
                 & .button-update {
                     color: #066130;
                     border: 0.2em solid #066130;
+
+                    & button {
+                        cursor: pointer;
+                        font-size: 1rem;
+                        color: #066130;
+                        border:none;
+                        background: transparent;
+                    }
                 }
 
                 & .button-mini {
@@ -462,6 +429,98 @@
 
                 &:hover {
                     font-size: 1.25rem;
+                }
+            }
+        }
+    }
+
+    &__modal {
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba( 0, 0, 0, 0.5);
+        transition: opacity 0.4s ease;
+        z-index: 20;
+
+        &_container {
+            height: 20rem;
+            width: 20rem;
+            border-radius: 5px;
+            background-color: #fff;
+            transition: inherit;
+
+            & > div {
+                height: 25%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            & .text {
+                height: 20%;
+                font-size: 1.25rem;
+            }
+
+            & .month {
+                height: 30%;
+                font-size: 2.5rem;
+            }
+
+            & .value {
+
+                & input {
+                    width: 60%;
+                    height: 30%;
+                    font-size: 2rem;
+                    text-align: center;
+                    border: none;
+                    border-bottom: 2px solid #FFA114;
+                    transition: all 0.2s;
+
+                    &:focus {
+                        width: 80%;
+                        outline: none;
+                    }
+                }
+            }
+
+            & .button {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                
+                & .button-update {
+                    color: #066130;
+                    border: 0.2em solid #066130;
+
+                    &::before,
+                    &::after {
+                        background: #fff;
+                    }
+
+                    & button {
+                        border:none;
+                        font-size: 1rem;
+                        color: #066130;
+                        border:none;
+                        background: transparent;
+                    }
+                }
+
+                & .button-cancel {
+                    color: #FFA114;
+                    border: 0.2em solid #FFA114;
+
+                    &::before,
+                    &::after {
+                        background: #fff;
+                    }
                 }
             }
         }

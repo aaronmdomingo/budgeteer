@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Expense from './expense';
 import { animateScroll } from 'react-scroll';
+import { CSSTransition } from 'react-transition-group';
+
+import Expense from './expense';
+import Modal from './modal';
 
 const Table = (props: any) => {
     const { monthName, user, expenseArr, expenseFormHandler, isLoading, deleteExpense, updateExpense } = props;
@@ -9,6 +12,7 @@ const Table = (props: any) => {
     const [ expense, setExpense ] = useState(0);
     const [ status, setStatus ] = useState('');
     const [ headerClass, setHeaderClass ] = useState('');
+    const [ showModal, setShowModal ] = useState(false);
 
     useEffect(() => {
         setCurrentTab(0);
@@ -23,7 +27,7 @@ const Table = (props: any) => {
                 let totalExpense = 0;
                 expenseArr.forEach((e :any) => totalExpense += e.value)
                 setExpense(totalExpense);
-                setBudget(res.current_budget - totalExpense);
+                setBudget(res.current_budget);
                 changeStatus(totalExpense / res.current_budget);
             })
             .catch(err => alert(err));
@@ -54,6 +58,7 @@ const Table = (props: any) => {
             case num < 1:
                 setStatus(`You're cutting it really close now!`);
                 setHeaderClass('red');
+                break;
             case num > 1:
                 setStatus(`Oh no! You went over for this month!`);
                 setHeaderClass('really-red');
@@ -72,7 +77,7 @@ const Table = (props: any) => {
         <div className="dashboard__table">
             <div className="dashboard__table_container">
                 <div className={`dashboard__table_container-header ${headerClass}`}>
-                    <div className="month">
+                    <div className="month" onClick={() => setShowModal(true)}>
                     { monthName }
                     </div>
                     <div className="budget">
@@ -80,7 +85,7 @@ const Table = (props: any) => {
                             Available Budget:
                         </div>
                         <div className="value">
-                            { budget }
+                            { budget - expense }
                         </div>
                     </div>
                     <div className="total-expense">
@@ -113,6 +118,16 @@ const Table = (props: any) => {
             <div className="dashboard__table_footer">
                 <i className="far fa-plus-square" onClick={() => expenseFormHandler()} ></i>
             </div>
+            <CSSTransition
+                in={showModal}
+                timeout={500}
+                classNames="alert"
+                unmountOnExit>
+                <Modal 
+                setShowModal={setShowModal}
+                monthName={monthName}
+                budget={budget}/>
+            </CSSTransition>
         </div>
     )
 }
