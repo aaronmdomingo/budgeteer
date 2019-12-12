@@ -127,6 +127,7 @@ const Table = (props: any) => {
                                 toggleView={toggleView}
                                 deleteExpense={deleteExpense}
                                 updateExpense={updateExpense}
+                                addCommas={addCommas}
                             />
                         })
                      }
