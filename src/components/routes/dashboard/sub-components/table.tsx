@@ -9,6 +9,7 @@ const Table = (props: any) => {
     const { monthName, user, expenseArr, expenseFormHandler, isLoading, deleteExpense, updateExpense } = props;
     const [ currentTab, setCurrentTab ] = useState(0);
     const [ budget, setBudget ] = useState(0);
+    const [ budgetId, setBudgetId ] = useState('');
     const [ expense, setExpense ] = useState(0);
     const [ status, setStatus ] = useState('');
     const [ headerClass, setHeaderClass ] = useState('');
@@ -28,9 +29,25 @@ const Table = (props: any) => {
                 expenseArr.forEach((e :any) => totalExpense += e.value)
                 setExpense(totalExpense);
                 setBudget(res.current_budget);
+                setBudgetId(res._id);
                 changeStatus(totalExpense / res.current_budget);
             })
             .catch(err => alert(err));
+    }
+
+    const updateBudget = (budgetObj: object) => {
+        fetch(`/api/month/${user}/${monthName}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(budgetObj) })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    fetchBudget();
+                }
+            })
+            .catch(err => alert(err));
+    }
+
+    const addCommas = (num: number) => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     const changeStatus = (num: number) => {
@@ -85,7 +102,7 @@ const Table = (props: any) => {
                             Available Budget:
                         </div>
                         <div className="value">
-                            { budget - expense }
+                            {addCommas(budget - expense)}
                         </div>
                     </div>
                     <div className="total-expense">
@@ -93,7 +110,7 @@ const Table = (props: any) => {
                             Total Expenses:
                         </div>
                         <div className="value">
-                            {  expense }
+                            {  addCommas(expense) }
                         </div>
                     </div>
                     <div className="status">
@@ -126,7 +143,9 @@ const Table = (props: any) => {
                 <Modal 
                 setShowModal={setShowModal}
                 monthName={monthName}
-                budget={budget}/>
+                budget={budget}
+                budgetId={budgetId}
+                updateBudget={updateBudget}/>
             </CSSTransition>
         </div>
     )
