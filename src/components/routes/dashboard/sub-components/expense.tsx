@@ -2,7 +2,7 @@ import React from 'react';
 import SubExpense from './expense-sub';
 
 const Expense = (props: any) => {
-    const { expense, toggleView, id, currentTab, deleteExpense, updateExpense } = props;
+    const { expense, toggleView, id, currentTab, deleteExpense, updateExpense, addCommas } = props;
 
     const date = expense.date.split('T')[0].split('-');
     const formattedDate = `${date[1]}/${date[2]}`;
@@ -25,7 +25,7 @@ const Expense = (props: any) => {
                     { expense.description }
                 </div>
                 <div className="dashboard__table_expense-value">
-                    { expense.value }
+                    { addCommas(expense.value) }
                 </div>
             </div>
             <SubExpense
