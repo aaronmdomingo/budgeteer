@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
 const Modal = (props: any) => {
-    const { setShowModal, monthName, budget } = props;
+    const { setShowModal, monthName, budget, budgetId, updateBudget } = props;
     const [ updatedBudget, setUpdatedBudget ] = useState(budget);
 
     const handleChange = (event: any) => {
         setUpdatedBudget(event.target.value);
     }
 
+    const updateHandler = (event: any) => {
+        event.preventDefault();
+        const budgetObj = {
+            budget: parseInt(updatedBudget),
+            id: budgetId
+        }
+
+        updateBudget(budgetObj);
+        setShowModal(false);
+    }
+
     return (
         <div className="dashboard__modal">
-            <form className="dashboard__modal_container">
+            <form className="dashboard__modal_container" onSubmit={updateHandler}>
                 <div className="text">
                     Current budget for the month of:
                 </div>
