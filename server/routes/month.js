@@ -14,4 +14,16 @@ router.get('/:user/:month', (req, res) => {
     })
 })
 
+router.patch('/:user/:month', (req, res) => {
+    Month.updateOne({ _id: req.body.id }, {current_budget: req.body.budget}, (err, val) => {
+        if (!err) {
+            res.send({
+                success: "true"
+            })
+        } else {
+            res.send(err);
+        }
+    })
+})
+
 module.exports = router;
