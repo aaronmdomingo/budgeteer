@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import { useCookies } from 'react-cookie';
 import './_register.scss';
 
 const Register = (props: any) => {
+    const { isLoggedIn } = props;
     const [ isLoading, setIsLoading ] = useState(true);
     const [ userName, setUserName ] = useState('');
     const [ firstName, setFirstName ] = useState('');
     const [ lastName, setLastName ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
+    const [userCookie] = useCookies(['current-user']);
     let status, passwordMatch, passwordValid: any;
 
     useEffect(() => {
@@ -63,6 +66,10 @@ const Register = (props: any) => {
         if (password === confirmPassword) {
             passwordMatch = true;
         }
+    }
+
+    if (userCookie['current-user'] || isLoggedIn) {
+        return <Redirect to='/' />
     }
 
     return (
