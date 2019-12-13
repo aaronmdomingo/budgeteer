@@ -46,7 +46,7 @@ const LandingPage = (props: any) => {
             ? ''
             :
                 <div className="landing__page_actions" onClick={() => clickHandler(true)}>
-                <div className="landing__page_button">
+                <div className="button-main">
                     <span>Get Started</span>
                     <svg>
                         <polyline className="o1" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
@@ -61,7 +61,7 @@ const LandingPage = (props: any) => {
                 classNames="fade"
                 unmountOnExit>
                 <div className="landing__page_login">
-                    <div className="landing__page_button" onClick={hasCookie || isLoggedIn  ? () => logIn(`${userCookie['current-user']}`) : () => {} }>
+                    <div className="button-main" onClick={hasCookie || isLoggedIn  ? () => logIn(`${userCookie['current-user']}`) : () => {props.history.push('/register')} }>
                         <span>
                             {
                                 hasCookie || isLoggedIn ? 'Dashboard' : 'Register'
@@ -72,7 +72,7 @@ const LandingPage = (props: any) => {
                             <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
                         </svg>
                     </div>
-                    <div className="landing__page_button" onClick={hasCookie || isLoggedIn ? () => logOut() : () => {} }>
+                    <div className="button-main" onClick={hasCookie || isLoggedIn ? () => logOut() : () => {} }>
                         <span>
                             {
                                 hasCookie || isLoggedIn ? 'Log out' : 'Log in'
