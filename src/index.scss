@@ -16,6 +16,65 @@ code {
 
 /**** BUTTONS ****/
 
+.button-main {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  width: 10rem;
+  cursor: pointer;
+
+  svg {
+      height: 55px;
+      width: 150px;
+      fill: none;
+      stroke-width: 5;
+
+      .o1 {
+          stroke: rgba(#FFB341, 0.7);
+          fill: #FFA114;
+          transition: all 1s ease-in-out;
+      }
+
+      .o2 {
+          stroke: #fff;
+          stroke-dasharray: 20 420;
+          stroke-dashoffset: 20;
+          transition: all 1s ease-in-out;
+      }
+  }
+
+  span,
+  button {
+      position: absolute;
+      margin: auto 0;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: #fff;
+      font-size: 1rem;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:hover {
+      .o1{
+          fill: rgba(#CC8110, 0.3);
+      }
+
+      .o2 {
+          stroke-dashoffset: -420;
+      }
+  }
+}
+
 .button-table {
   cursor: pointer;
   position: relative;
