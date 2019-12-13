@@ -33,19 +33,47 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                position: relative;
 
                 & .text {
                     width: 50%;
                 }
 
                 & input {
-                    border: none;
                     width: 40%;
                     height: 30%;
-                    border-bottom: 2px solid #FFA114;
                     border-radius: 5px;
                     text-align: center;
+                    border: 2px solid transparent;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                        border: 2px solid transparent;
+                    }
+
+                    &.success {
+                        border: 2px solid rgb(111, 185, 143);
+                    }
+
+                    &.danger {
+                        
+                        &:focus {
+                            border: 2px solid red;
+                        }
+                    }
                 }
+            }
+
+            & span {
+                position: absolute;
+                font-size: 0.75rem;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: red;
             }
         }
 
