@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const Modal = (props: any) => {
     const { setShowModal, monthName, budget, budgetId, updateBudget } = props;

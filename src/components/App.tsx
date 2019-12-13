@@ -7,6 +7,7 @@ import {
 
 import LandingPage from './routes/landing-page/landing-page';
 import Dashboard from './routes/dashboard/dashboard';
+import Register from './routes/register/register';
 
 export const UserContext = createContext({
   currentUser: ''
@@ -35,6 +36,9 @@ const App: React.FC = () => {
           <UserContext.Provider value={{ currentUser }}>
             <Dashboard isLoggedIn={isLoggedIn} />
           </UserContext.Provider>
+        </Route>
+        <Route path='/register'>
+          <Register isLoggedIn={isLoggedIn}/>
         </Route>
       </Switch>
     </Router>
