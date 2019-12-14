@@ -4,6 +4,27 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 const Month = require('../models/month.model');
 
+router.post('/login', (req, res,) => {
+    const user = req.body.username.toLowerCase();
+    const password = req.body.password;
+
+    User.findOne({ user_name: user }, (err, foundUser) => {
+        if (foundUser) {
+            bcrypt.compare(password, foundUser.password, (err, isMatch) => {
+                if (!err && isMatch) {
+                    res.send({ success: true });
+                } else {
+                    res.send({ error: 'Incorrect username or password' });
+                }
+            })
+        } else {
+            res.send({ error: 'Incorrect username or password' });
+        }
+    })
+})
+    
+
+
 router.post('/:user', (req, res) => {
     const user = req.params.user.toLowerCase();
     User.findOne({ user_name: user }, (err, foundUser) => {
