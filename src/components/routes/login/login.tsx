@@ -13,7 +13,7 @@ const Login = (props: any) => {
     const [ password, setPassword ] = useState('');
     const [ userStatus, setUserStatus ] = useState(message);
     const [ hasError, setHasError ] = useState(false);
-    const [, setUserCookie, ] = useCookies(['current-user']);
+    const [userCookie, setUserCookie ] = useCookies(['current-user']);
 
     useEffect(() => {
         setIsDoneLoading(true);
@@ -65,6 +65,10 @@ const Login = (props: any) => {
     const clearInputs = () => {
         setUserName('');
         setPassword('');
+    }
+
+    if (userCookie['current-user'] || isLoggedIn) {
+        return <Redirect to='/' />
     }
 
     return (
