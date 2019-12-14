@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
+const Month = require('../models/month.model');
 
 router.post('/:user', (req, res) => {
     const user = req.params.user.toLowerCase();
@@ -24,8 +25,19 @@ router.post('/:user', (req, res) => {
                         newUser.password = hash;
                         newUser.save((err) => {
                             if (!err) {
+                                const monthArr = ['January', 'February', 'March', 'April', 'May', 'June',
+                                'July', 'August', 'September', 'October', 'November', 'December'];
+
+                                monthArr.forEach(monthName => {
+                                    const month = new Month({
+                                        user_name: req.body.userName,
+                                        month: monthName,
+                                        current_budget: 0
+                                    })
+                                    month.save();
+                                })
                                 res.send({
-                                    message: "user created"
+                                    success: true
                                 })
                             } else {
                                 res.send(err);
