@@ -1,0 +1,88 @@
+.register {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__logo {
+        height: 15rem;
+        width: 15rem;
+        background: url('../../images/budgeteer-white.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    &__container {
+        height: 30rem;
+        width: 20rem;
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 5px;
+        transition: all 0.4s ease;
+
+        &_form {
+            width: 100%;
+            height: 80%;
+
+            & .form {
+                width: 100%;
+                height: 20%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+
+                & .text {
+                    width: 50%;
+                }
+
+                & input {
+                    width: 40%;
+                    height: 30%;
+                    border-radius: 5px;
+                    text-align: center;
+                    border: 2px solid transparent;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                        border: 2px solid transparent;
+                    }
+
+                    &.success {
+                        border: 2px solid rgb(111, 185, 143);
+                    }
+
+                    &.danger {
+                        
+                        &:focus {
+                            border: 2px solid red;
+                        }
+                    }
+                }
+            }
+
+            & span {
+                position: absolute;
+                font-size: 0.75rem;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: red;
+            }
+        }
+
+        &_button {
+            height: 20%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/**** BUTTONS ****/
+
+.button-main {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  width: 10rem;
+  cursor: pointer;
+
+  svg {
+      height: 55px;
+      width: 150px;
+      fill: none;
+      stroke-width: 5;
+
+      .o1 {
+          stroke: rgba(#FFB341, 0.7);
+          fill: #FFA114;
+          transition: all 1s ease-in-out;
+      }
+
+      .o2 {
+          stroke: #fff;
+          stroke-dasharray: 20 420;
+          stroke-dashoffset: 20;
+          transition: all 1s ease-in-out;
+      }
+  }
+
+  span,
+  button {
+      position: absolute;
+      margin: auto 0;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: #fff;
+      font-size: 1rem;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:hover {
+      .o1{
+          fill: rgba(#CC8110, 0.3);
+      }
+
+      .o2 {
+          stroke-dashoffset: -420;
+      }
+  }
+}
+
+.button-table {
+  cursor: pointer;
+  position: relative;
+  background: none;
+  color: #fff;
+  text-decoration: none;
+  border: 0.2em solid #fff;
+  padding: 0.5em 1em;
+  transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  width: 4rem;
+  text-align: center;
+
+  &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 10%;
+      background: #FFA114;
+      height: 0.3em;
+      right: 20%;
+      top: -0.21em;
+      transform: skewX(-45deg);
+      -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+      transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 10%;
+      background: #FFA114;
+      height: 0.3em;
+      left: 20%;
+      bottom: -0.25em;
+      transform: skewX(45deg);
+      -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+      transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &:hover {
+      transform: scale(1.1);
+      &::before {
+      right: 80%;
+      }
+      &::after {
+      left: 80%;
+      }
+  }
+}
+
+/**** ANIMATIONS ****/
+
+.fade-enter,
+.modal-fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active,
+.modal-fade-enter.modal-fade-enter-active {
+  opacity: 1;
+}
+
+.fade-leave,
+.modal-fade-leave {
+  opacity: 1;
+}
+
+.fade-exit {
+  display: none;
+}
+
+.modal-fade-exit {
+  opacity: 0;
+}
+
+.sidebar-enter,
+.update-enter {
+  transform: translateX(-100%);
+}
+
+.sidebar-enter.sidebar-enter-active,
+.update-enter.update-enter-active {
+  transform: translateX(0);
+}
+
+.sidebar-exit {
+  transform: translateX(-100%);
+}
+
+.update-exit {
+  display: none;
+}
+
+.delete-enter {
+  transform: translateX(100%);
+}
+
+.delete-enter.delete-enter-active {
+  transform: translateX(0);
+}
+
+.delete-exit {
+  display: none;
+}
+
+.form-enter {
+  transform: translateY(100%);
+}
+
+.form-enter.form-enter-active {
+  transform: translateY(0);
+}
+
+.form-exit {
+  transform: translateY(100%);
+}
+
+.alert-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.alert-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.alert-exit {
+  opacity: 1;
+}
+.alert-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
