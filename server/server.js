@@ -17,7 +17,7 @@ const monthRouter = require('./routes/month');
 
 
 app.use('/api/expense/', expenseRouter);
-app.use('/api/user', userRouter);
+app.use('/api/user/', userRouter);
 app.use('/api/month/', monthRouter);
 
 app.listen(PORT, () => {

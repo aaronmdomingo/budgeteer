@@ -12,12 +12,28 @@ const Register = (props: any) => {
     const [ lastName, setLastName ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
+    const [ serverResponse, setServerResponse ] = useState('');
     const [userCookie] = useCookies(['current-user']);
     let status, passwordMatch, passwordValid: any;
 
     useEffect(() => {
         setIsLoading(false);
     })
+
+    const createUser = (userObj: any) => {
+
+        fetch(`/api/user/${userObj.userName}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(userObj) })
+            .then(res => res.json())
+            .then(res => {
+                if (res.error) {
+                    setUserName('');
+                    setServerResponse(res.error);
+                } else {
+                    clearInputs();
+                    props.history.push('/log-in', {message: "User successfully created"});
+                }
+            })
+    }
 
     const handleChange = (event: any) => {
         switch (event.target.name) {
@@ -46,6 +62,21 @@ const Register = (props: any) => {
 
     const handleSubmit = (event:any) => {
         event.preventDefault();
+        const userObj = {
+            userName: userName,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+        }
+        createUser(userObj);
+    }
+
+    const clearInputs = () => {
+        setUserName('');
+        setPassword('');
+        setFirstName('');
+        setLastName('');
+        setConfirmPassword('');
     }
 
     if (password.length < 8) {
@@ -87,6 +118,9 @@ const Register = (props: any) => {
                                 Username
                             </div>
                             <input value={userName} name="userName"  type="text" className={`value ${userName.length ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
+                            {
+                                serverResponse ? <span> { serverResponse } </span> : ''
+                            }
                         </div>
                         <div className="form">
                             <div className="text">
