@@ -1,20 +1,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 const PORT = process.env.PORT || 4000;
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+if (process.env.NODE_ENV === 'production') {  
+    app.use(express.static(path.join(__dirname, 'client/build')));
+    app.get('*', (req, res) => {    
+        res.sendfile(path.join(__dirname = 'client/build/index.html'));  
+    })
+};
+
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/budgeteer', 
 { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-const expenseRouter = require('./routes/expense');
-const userRouter = require('./routes/user');
-const monthRouter = require('./routes/month');
+const expenseRouter = require('./server/routes/expense');
+const userRouter = require('./server/routes/user');
+const monthRouter = require('./server/routes/month');
 
 
 app.use('/api/expense/', expenseRouter);
