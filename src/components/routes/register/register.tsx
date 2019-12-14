@@ -6,7 +6,7 @@ import './_register.scss';
 
 const Register = (props: any) => {
     const { isLoggedIn } = props;
-    const [ isLoading, setIsLoading ] = useState(true);
+    const [ isDoneLoading, setIsDoneLoading ] = useState(false);
     const [ userName, setUserName ] = useState('');
     const [ firstName, setFirstName ] = useState('');
     const [ lastName, setLastName ] = useState('');
@@ -17,11 +17,10 @@ const Register = (props: any) => {
     let status, passwordMatch, passwordValid: any;
 
     useEffect(() => {
-        setIsLoading(false);
-    })
+        setIsDoneLoading(true);
+    }, [isLoggedIn])
 
     const createUser = (userObj: any) => {
-
         fetch(`/api/user/${userObj.userName}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(userObj) })
             .then(res => res.json())
             .then(res => {
@@ -30,7 +29,7 @@ const Register = (props: any) => {
                     setServerResponse(res.error);
                 } else {
                     clearInputs();
-                    props.history.push('/log-in', {message: "User successfully created"});
+                    props.history.push('/login', {message: "User successfully created"});
                 }
             })
     }
@@ -107,7 +106,7 @@ const Register = (props: any) => {
         <div className="register">
             <div className="register__logo"></div>
             <CSSTransition
-                in={!isLoading}
+                in={isDoneLoading}
                 timeout={500}
                 classNames="fade"
                 unmountOnExit>

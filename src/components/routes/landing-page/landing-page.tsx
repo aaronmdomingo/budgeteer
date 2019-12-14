@@ -72,7 +72,7 @@ const LandingPage = (props: any) => {
                             <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
                         </svg>
                     </div>
-                    <div className="button-main" onClick={hasCookie || isLoggedIn ? () => logOut() : () => {} }>
+                    <div className="button-main" onClick={hasCookie || isLoggedIn ? () => logOut() : () => {props.history.push('/login')} }>
                         <span>
                             {
                                 hasCookie || isLoggedIn ? 'Log out' : 'Log in'
