@@ -1,14 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/budgeteer', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/budgeteer', 
+{ useNewUrlParser: true, useUnifiedTopology: true });
 
 
 const expenseRouter = require('./routes/expense');
