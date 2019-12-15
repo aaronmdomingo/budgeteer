@@ -98,7 +98,7 @@ const Dashboard = (props: any) => {
                 <i className="fas fa-bars" onClick={sideBarHandler} ></i>
                 </div>
                 <div className="dashboard__header_user_info">
-                    <div className="dashboard__header_user_info-name">
+                    <div className="dashboard__header_user_info-name" onClick={() => props.history.push(`/profile/${user}`)} >
                         { user }
                     </div>
                     <div className="dashboard__header_user_info-date">
