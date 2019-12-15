@@ -67,7 +67,11 @@ const Register = (props: any) => {
             firstName: firstName,
             lastName: lastName,
         }
-        createUser(userObj);
+        if (!passwordValid) {
+            setConfirmPassword('');
+        } else {
+            createUser(userObj);
+        }
     }
 
     const clearInputs = () => {
