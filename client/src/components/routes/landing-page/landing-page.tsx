@@ -7,8 +7,8 @@ import './_landing-page.scss';
 
 const LandingPage = (props: any) => {
     const [ isClicked, setIsClicked ] = useState(false);
-    const [ userCookie, setUserCookie, removeUserCookie ] = useCookies(['current-user']);
-    const { isLoggedIn, logOutUser } = props;
+    const [ userCookie, setUserCookie, ] = useCookies(['current-user']);
+    const { isLoggedIn } = props;
     const hasCookie = userCookie['current-user'];
 
     const clickHandler = (bool: boolean) => {
@@ -29,13 +29,7 @@ const LandingPage = (props: any) => {
         const monthName = monthsArr[month];
         props.logInUser(userName);
         props.history.push(`/dashboard/${userName}/${monthName}`);
-        setUserCookie('current-user', userName);
-    }
-
-    const logOut = () => {
-        removeUserCookie('current-user');
-        logOutUser();
-        clickHandler(false);
+        setUserCookie('current-user', userName, {path: '/'});
     }
 
     return (
@@ -61,10 +55,10 @@ const LandingPage = (props: any) => {
                 classNames="fade"
                 unmountOnExit>
                 <div className="landing__page_login">
-                    <div className="button-main" onClick={hasCookie || isLoggedIn  ? () => logIn(`${userCookie['current-user']}`) : () => {props.history.push('/register')} }>
+                    <div className="button-main" onClick={hasCookie || isLoggedIn  ? () => {props.history.push(`/profile/${userCookie['current-user']}`)} : () => {props.history.push('/register')} }>
                         <span>
                             {
-                                hasCookie || isLoggedIn ? 'Dashboard' : 'Register'
+                                hasCookie || isLoggedIn ? 'Profile' : 'Register'
                             }
                         </span>
                         <svg>
@@ -72,10 +66,10 @@ const LandingPage = (props: any) => {
                             <polyline className="o2" points="0 0, 150 0, 150 55, 0 55, 0 0"></polyline>
                         </svg>
                     </div>
-                    <div className="button-main" onClick={hasCookie || isLoggedIn ? () => logOut() : () => {props.history.push('/login')} }>
+                    <div className="button-main" onClick={hasCookie || isLoggedIn ? () => logIn(`${userCookie['current-user']}`) : () => {props.history.push('/login')} }>
                         <span>
                             {
-                                hasCookie || isLoggedIn ? 'Log out' : 'Log in'
+                                hasCookie || isLoggedIn ? 'Dashboard' : 'Log in'
                             }
                         </span>
                         <svg>
