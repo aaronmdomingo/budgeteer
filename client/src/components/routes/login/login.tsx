@@ -33,7 +33,7 @@ const Login = (props: any) => {
                     logInUser(username);
                     history.push(`/dashboard/${username}/${monthName}`);
                     setHasError(false);
-                    setUserCookie('current-user', userName);
+                    setUserCookie('current-user', userName, {path: '/'});
                 } else {
                     setUserStatus(res.error);
                     setHasError(true);
