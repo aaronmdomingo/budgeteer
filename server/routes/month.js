@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Month = require('../models/month.model');
 
-router.use(express.json());
-
 router.get('/:user/:month', (req, res) => {
     const user = req.params.user;
     const month = req.params.month;
