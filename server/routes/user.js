@@ -14,11 +14,17 @@ router.get('/:user', (req, res) => {
             Expense.find({ user_name: user  }, (err, foundExpenses) => {
                 if (err) throw err;
                 if (foundExpenses) {
-                    res.send({
-                        user_name: foundUser.user_name,
-                        first_name: foundUser.first_name,
-                        last_name: foundUser.last_name,
-                        totalExpenses: foundExpenses
+                    Month.find({ user_name: user }, (err, foundMonths) => {
+                        if (err) throw err;
+                        if (foundMonths) {
+                            res.send({
+                                user_name: foundUser.user_name,
+                                first_name: foundUser.first_name,
+                                last_name: foundUser.last_name,
+                                totalExpenses: foundExpenses,
+                                totalMonths: foundMonths
+                            })
+                        }
                     })
                 } 
             })
