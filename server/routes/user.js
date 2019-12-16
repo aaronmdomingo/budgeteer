@@ -8,7 +8,7 @@ const Expense = require('../models/expense.model');
 router.get('/:user', (req, res) => {
     const user = req.params.user
 
-    User.findOne({ user_name: user.toLowerCase() }, (err, foundUser) => {
+    User.findOne({ user_name: user }, (err, foundUser) => {
         if (err) throw err;
         if (foundUser) {
             Expense.find({ user_name: user  }, (err, foundExpenses) => {
@@ -37,7 +37,7 @@ router.get('/:user', (req, res) => {
 })
 
 router.post('/login', (req, res,) => {
-    const user = req.body.username.toLowerCase();
+    const user = req.body.username;
     const password = req.body.password;
 
     User.findOne({ user_name: user }, (err, foundUser) => {
@@ -58,9 +58,9 @@ router.post('/login', (req, res,) => {
 
 
 router.post('/:user', (req, res) => {
-    const user = req.params.user.toLowerCase();
+    const user = req.params.user;
     const budget = req.body.budget;
-    User.findOne({ user_name: user }, (err, foundUser) => {
+    User.findOne({ user_name: user || user.toLowerCase() }, (err, foundUser) => {
         if (foundUser) {
             res.send({
                 error: "Username already exists"
@@ -84,7 +84,7 @@ router.post('/:user', (req, res) => {
 
                                 monthArr.forEach(monthName => {
                                     const month = new Month({
-                                        user_name: req.body.userName,
+                                        user_name: user,
                                         month: monthName,
                                         current_budget: budget
                                     })
