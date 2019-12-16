@@ -85,7 +85,9 @@ code {
   padding: 0.5em 1em;
   transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
   width: 4rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &::before {
       content: "";
@@ -123,6 +125,10 @@ code {
       &::after {
       left: 80%;
       }
+  }
+
+  & button {
+    cursor: pointer;
   }
 }
 
@@ -166,7 +172,7 @@ code {
 }
 
 .update-exit {
-  display: none;
+  display: none !important;
 }
 
 .delete-enter {
@@ -178,7 +184,7 @@ code {
 }
 
 .delete-exit {
-  display: none;
+  display: none !important;
 }
 
 .form-enter {
