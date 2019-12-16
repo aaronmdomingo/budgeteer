@@ -39,7 +39,7 @@ const SubExpense = (props: any) => {
         setUpdatedDescription('');
         setUpdatedValue('');
     }
-
+    
     return (
         <div className={`dashboard__table_expense-sub ${ match ? 'open' : ''  }`}>
             <CSSTransition
