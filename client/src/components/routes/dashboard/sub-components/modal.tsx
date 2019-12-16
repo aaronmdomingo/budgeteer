@@ -29,7 +29,7 @@ const Modal = (props: any) => {
                     {monthName}
                 </div>
                 <div className="value">
-                    <input type="number" min="0" className="input" value={updatedBudget} onChange={handleChange} required/>
+                    <input type="number" min="0" max="1000000" className="input" value={updatedBudget} onChange={handleChange} required/>
                 </div>
                 <div className="button">
                     <div className="button-table button-update">
