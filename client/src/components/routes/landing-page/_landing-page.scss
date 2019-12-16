@@ -8,6 +8,14 @@
     align-items: center;
     justify-content: center;
 
+    @include respond(phone-land) {
+        height: 200vh;
+    }
+
+    @include respond(short-phone) {
+        height: 120vh;
+    }
+
     &_logo {
         height: 20rem;
         width: 20rem;

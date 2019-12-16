@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
-import './_landing-page.scss';
 
 
 const LandingPage = (props: any) => {
