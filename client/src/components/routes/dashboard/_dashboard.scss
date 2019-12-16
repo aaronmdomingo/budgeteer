@@ -70,8 +70,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('../../images/budgeteer-white.png');
-            background-size: cover;
+            background: url('../../images/budgeteer-black.png');
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center;
             margin-top: 0.5rem;
         }
