@@ -20,6 +20,18 @@
         border-bottom: 2px solid #FFA114;
         position: relative;
 
+        @include respond(tab-port) {
+            width: 60%;
+        }
+
+        @include respond(tab-land) {
+            width: 50%;
+        }
+
+        @include respond(desktop) {
+            width: 40%;
+        }
+
         & .name {
             font-size: 1.5rem;
             color: #ffffff;
@@ -51,11 +63,20 @@
         align-items: center;
         transition: all 0.4s ease;
 
+        @include respond(tab-port) {
+            height: 50rem;
+        }
+
 
         &_container {
-            width: 20rem;
+            width: 85%;
             height: 35rem;
             border-radius: 5px;
+
+            @include respond(tab-port) {
+                height: 45rem;
+                width: 35rem;
+            }
 
             & > div {
                 height: 7.69%;

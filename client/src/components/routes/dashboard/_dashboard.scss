@@ -1,10 +1,13 @@
 .dashboard {
-    height: 100vh;
+    min-height: 100vh;
     background: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80');
     background-size: cover;
     background-position: center;
-    overflow: scroll;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &__header {
         height: 7.5rem;
@@ -12,6 +15,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @include respond(tab-land) {
+            width: 47rem;
+            margin: 0 auto;
+        }
 
         &_menu {
             height: 100%;
@@ -59,10 +67,27 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: absolute;
+        position: fixed;
         top: 0;
+        left: 0;
         background: #FFA114;
         transition: all 0.4s ease-out;
+
+        @include respond(tab-port) {
+            width: 25%;
+        }
+
+        @include respond(tab-land) {
+            width: 20%;
+        }
+
+        @include respond(desktop) {
+            width: 15%;
+        }
+
+        @include respond(wide-land) {
+            width: 20%;
+        }
 
         &_logo {
             width: 100%;
@@ -81,6 +106,10 @@
             width: 100%;
             height: 70%;
 
+            @include respond(wide-land) {
+                overflow: scroll;
+            }
+
             &_val {
                 height: 8.33%;
                 cursor: pointer;
@@ -89,6 +118,10 @@
                 align-items: center;
                 text-transform: capitalize;
                 transition: all 0.2s;
+
+                @include respond(wide-land) {
+                    height: 3rem;
+                }
 
                 &:hover {
                     transform: scale(1.1);
@@ -123,11 +156,20 @@
         width: 100%;
         transition: all 0.3s;
 
+        @include respond(tab-port) {
+            height: 56.5rem;
+        }
+
         &_container {
             height: 38rem;
-            width: 20rem;
+            width: 85%;
             margin: auto;
             border-radius: 5px;
+
+            @include respond(tab-port) {
+                height: 51rem;
+                width: 35rem;
+            }
 
 
             &-header {
@@ -161,10 +203,6 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-
-                    & .text {
-                        justify-content: flex-end;
-                    }
                     
                     & div {
                         width: 50%;
@@ -331,7 +369,7 @@
     }
 
     &__form {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         height: 5rem;
         width: 100%;
@@ -339,6 +377,23 @@
         transition: all 0.4s ease-out;
         display: flex;
         align-items: center;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        @include respond(tab-port) {
+            width: 80%;
+            right: 10%;
+        }
+
+        @include respond(tab-land) {
+            width: 60%;
+            right: 20%;
+        }
+
+        @include respond(desktop) {
+            width: 50%;
+            right: 25%;
+        }
 
         & > div {
             height: 2.5rem;
@@ -359,9 +414,25 @@
                 text-align: center;
                 transition: all 0.2s;
 
+                @include respond(tab-port) {
+                    width: 50%;
+                }
+
+                @include respond(tab-land) {
+                    width: 35%;
+                }
+
                 &:focus {
                     width: 85%;
                     outline: none;
+
+                    @include respond(tab-port) {
+                        width: 70%;
+                    }
+
+                    @include respond(tab-land) {
+                        width: 50%;
+                    }
                 }
             }
         }
@@ -408,7 +479,7 @@
     }
 
     &__modal {
-        position: absolute;
+        position: fixed;
         height: 100vh;
         width: 100vw;
         top: 0;
@@ -417,7 +488,6 @@
         justify-content: center;
         align-items: center;
         background-color: rgba( 0, 0, 0, 0.5);
-        transition: opacity 0.4s ease;
         z-index: 20;
 
         &_container {
@@ -425,7 +495,7 @@
             width: 20rem;
             border-radius: 5px;
             background-color: #fff;
-            transition: inherit;
+            transition: opacity 0.4s ease;
 
             & > div {
                 height: 25%;

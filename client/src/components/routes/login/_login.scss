@@ -1,5 +1,5 @@
 .login {
-    height: 100vh;
+    min-height: 100vh;
     background: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80');
     background-size: cover;
     background-position: center;
@@ -12,6 +12,7 @@
         height: 15rem;
         width: 15rem;
         background: url('../../images/budgeteer-white.png');
+        margin-top: 1rem;
         background-size: cover;
         background-position: center;
     }
@@ -21,6 +22,7 @@
         width: 20rem;
         background-color: rgba(255, 255, 255, 0.6);
         border-radius: 5px;
+        margin-bottom: 1rem;
         transition: all 0.4s ease;
 
         &_form {
