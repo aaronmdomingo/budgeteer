@@ -171,6 +171,41 @@
             height: 56.5rem;
         }
 
+        &_nav {
+            height: 2.5rem;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.9);
+            display: flex;
+            color: #fff;
+
+            & > div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &-date {
+                width: 20%;
+            }
+
+            &-description,
+            &-value {
+                width: 40%;
+            }
+        }
+
+        &_none {
+            height: 5rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
         &_container {
             height: 38rem;
             width: 85%;
@@ -191,7 +226,7 @@
                 justify-content: center;
                 align-items: center;
                 font-size: 2.5rem;
-                border-bottom: 2px solid black;
+                border-bottom: 2px solid rgba(0, 0, 0, 0.9);
                 background-color: rgba(255, 255, 255, 0.9);
                 border-top-left-radius: 5px;
                 border-top-right-radius: 5px;
