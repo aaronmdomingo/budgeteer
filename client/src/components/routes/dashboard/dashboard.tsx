@@ -105,10 +105,17 @@ const Dashboard = (props: any) => {
                 </div>
             </div>
             <CSSTransition
-                in={!isLoading}
-                timeout={500}
-                classNames="fade"
-                unmountOnExit>
+            in={isLoading}
+            timeout={500}
+            classNames="fade"
+            unmountOnExit>
+                <div className="dashboard__wrapper" ></div>
+            </CSSTransition>
+            <CSSTransition
+            in={!isLoading}
+            timeout={500}
+            classNames="fade"
+            unmountOnExit>
                 <Table expenseArr={expenseArr}
                 monthName={monthName}
                 user={user}
