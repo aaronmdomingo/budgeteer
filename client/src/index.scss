@@ -211,7 +211,7 @@ code {
   transition: opacity 300ms, transform 300ms;
 }
 
-/**** Color Modifier ****/
+/**** COLOR MODIFIER ****/
 
 .mod-white {
   background-color: rgba(255, 255, 255, 0.9) !important;
@@ -240,3 +240,30 @@ code {
 .mod-really-red {
   background-color: rgba(157, 11, 11, 0.9) !important;
 }
+
+
+/**** MEDIA QUERY ****/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == tab-port {
+      @media only screen and (min-width: 48em) {@content};
+  }
+
+  @if $breakpoint == tab-land {
+      @media only screen and (min-width: 64em) {@content};
+  }
+
+  @if $breakpoint == desktop {
+      @media only screen and (min-width: 85.375em) {@content};
+  }
+
+  @if $breakpoint == wide-land {
+    @media only screen and (max-height: 43.750em) {@content};
+  } 
+}
+
+@import "./components/routes/landing-page/landing-page";
+@import "./components/routes/register/register";
+@import "./components/routes/login/login";
+@import "./components/routes/dashboard/dashboard";
+@import "./components/routes/profile/profile";
