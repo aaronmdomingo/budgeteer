@@ -173,7 +173,7 @@ const Register = (props: any) => {
                                 Budget 
                                 <i className="fas fa-info-circle" onMouseEnter={hoverHandler} onMouseLeave={hoverHandler}></i>
                             </div>
-                            <input value={budget} type="number" min="0" name="budget" className={`value ${parseInt(budget) > 0 ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
+                            <input value={budget} type="number" min="0" max="1000000" name="budget" className={`value ${parseInt(budget) > 0 ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
                             {
                                 inHover ? <span className="info"> Your initial monthly budget, it can be changed at any time </span> : '' 
                             }

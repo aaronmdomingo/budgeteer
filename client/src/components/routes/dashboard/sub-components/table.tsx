@@ -119,17 +119,28 @@ const Table = (props: any) => {
                 </div>
                 <div className="dashboard__table_container-body" id="dashboard--table">
                     {
-                        expenseArr.map((e: any) => {
-                            return <Expense key={e._id}
-                                id={e._id}
-                                expense={e}
-                                currentTab={currentTab}
-                                toggleView={toggleView}
-                                deleteExpense={deleteExpense}
-                                updateExpense={updateExpense}
-                                addCommas={addCommas}
-                            />
-                        })
+                        expenseArr.length 
+                        ? <div className="dashboard__table_nav">
+                            <div className="dashboard__table_nav-date">Date</div>
+                            <div className="dashboard__table_nav-description">Description</div>
+                            <div className="dashboard__table_nav-value">Value</div>
+                        </div> 
+                        : ''
+                    }
+                    {
+                        expenseArr.length 
+                        ? expenseArr.map((e: any) => {
+                                return <Expense key={e._id}
+                                    id={e._id}
+                                    expense={e}
+                                    currentTab={currentTab}
+                                    toggleView={toggleView}
+                                    deleteExpense={deleteExpense}
+                                    updateExpense={updateExpense}
+                                    addCommas={addCommas}
+                                />
+                            })
+                        : <div className="dashboard__table_none"> No Expenses Listed </div>
                      }
                 </div>
             </div>
