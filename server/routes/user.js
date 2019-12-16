@@ -53,6 +53,7 @@ router.post('/login', (req, res,) => {
 
 router.post('/:user', (req, res) => {
     const user = req.params.user.toLowerCase();
+    const budget = req.body.budget;
     User.findOne({ user_name: user }, (err, foundUser) => {
         if (foundUser) {
             res.send({
@@ -79,7 +80,7 @@ router.post('/:user', (req, res) => {
                                     const month = new Month({
                                         user_name: req.body.userName,
                                         month: monthName,
-                                        current_budget: 0
+                                        current_budget: budget
                                     })
                                     month.save();
                                 })

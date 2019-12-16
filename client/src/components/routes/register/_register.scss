@@ -25,11 +25,11 @@
 
         &_form {
             width: 100%;
-            height: 80%;
+            height: 85%;
 
             & .form {
                 width: 100%;
-                height: 20%;
+                height: 16.66%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -37,6 +37,15 @@
 
                 & .text {
                     width: 50%;
+
+                    & i {
+                        margin-left: 1rem;
+                        transition: all 0.2s;
+
+                        &:hover {
+                            color: #FFA114;
+                        }
+                    }
                 }
 
                 & input {
@@ -74,11 +83,15 @@
                 justify-content: center;
                 align-items: center;
                 color: red;
+
+                &.info {
+                    color: #000000;
+                }
             }
         }
 
         &_button {
-            height: 20%;
+            height: 15%;
             width: 100%;
             display: flex;
             justify-content: center;
