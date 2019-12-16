@@ -49,8 +49,14 @@
             align-items: center;
 
             &-name {
+                cursor: pointer;
                 font-size: 2rem;
                 color: #fff;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    color: #FFA114;
+                }
             }
 
             &-date {
