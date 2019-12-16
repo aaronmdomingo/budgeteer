@@ -51,7 +51,6 @@ const Table = (props: any) => {
     }
 
     const changeStatus = (num: number) => {
-        console.log(num);
         switch(true) {
             case num === 0:
                 setStatus('Perfect. Clean Slate!');
