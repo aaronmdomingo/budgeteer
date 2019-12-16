@@ -16,6 +16,10 @@
         justify-content: center;
         align-items: center;
 
+        @include respond(tab-port) {
+            width: 77.5%
+        }
+
         @include respond(tab-land) {
             width: 47rem;
             margin: 0 auto;
@@ -157,7 +161,8 @@
             }
         }
     }
-    &__table {
+    &__table,
+    &__wrapper {
         height: 43rem;
         width: 100%;
         transition: all 0.3s;
@@ -243,6 +248,10 @@
                     background-color: rgba(0,0,0,.05);
                 }
             }
+        }
+
+        &__wrapper {
+            opacity: 0;
         }
 
         &_footer {
