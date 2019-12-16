@@ -17,7 +17,7 @@ router.get('/:user', (req, res) => {
                     Month.find({ user_name: user }, (err, foundMonths) => {
                         if (err) throw err;
                         if (foundMonths) {
-                            res.send({
+                            res.json({
                                 user_name: foundUser.user_name,
                                 first_name: foundUser.first_name,
                                 last_name: foundUser.last_name,
@@ -29,7 +29,7 @@ router.get('/:user', (req, res) => {
                 } 
             })
         } else {
-            res.send({
+            res.json({
                 error: 'Username does not exist'
             })
         }
@@ -44,13 +44,13 @@ router.post('/login', (req, res,) => {
         if (foundUser) {
             bcrypt.compare(password, foundUser.password, (err, isMatch) => {
                 if (!err && isMatch) {
-                    res.send({ success: true });
+                    res.json({ success: true });
                 } else {
-                    res.send({ error: 'Incorrect username or password' });
+                    res.json({ error: 'Incorrect username or password' });
                 }
             })
         } else {
-            res.send({ error: 'Incorrect username or password' });
+            res.json({ error: 'Incorrect username or password' });
         }
     })
 })
@@ -62,7 +62,7 @@ router.post('/:user', (req, res) => {
     const budget = req.body.budget;
     User.findOne({ user_name: user || user.toLowerCase() }, (err, foundUser) => {
         if (foundUser) {
-            res.send({
+            res.json({
                 error: "Username already exists"
              })
         } else {
@@ -90,15 +90,15 @@ router.post('/:user', (req, res) => {
                                     })
                                     month.save();
                                 })
-                                res.send({
+                                res.json({
                                     success: true
                                 })
                             } else {
-                                res.send(err);
+                                res.json(err);
                             }
                         })
                     } else {
-                        res.send(err);
+                        res.json(err);
                     }
                 })
             })

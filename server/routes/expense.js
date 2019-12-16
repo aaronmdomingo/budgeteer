@@ -7,9 +7,9 @@ router.get('/:user/:month', (req, res) => {
     const month = req.params.month;
     Expense.find({ user_name: `${userName}`, month: `${month}` }, (err, foundExpenses) => {
         if (!err) {
-            res.send(foundExpenses);
+            res.json(foundExpenses);
         } else {
-            res.send(err);
+            res.json(err);
         }
     })
 })
@@ -27,11 +27,11 @@ router.post('/:user/:month', (req, res) => {
 
      expense.save((err, val) => {
          if (!err) {
-             res.send({
+             res.json({
                  success: "true"
              })
          } else {
-             res.send(err);
+             res.json(err);
          }
      })
 })
@@ -41,11 +41,11 @@ router.delete('/:user/:month/:id', (req, res) => {
 
     Expense.deleteOne({ _id: id }, (err) => {
         if (!err) {
-            res.send({
+            res.json({
                 success: "true"
             })
         } else {
-            res.send(err);
+            res.json(err);
         }
     })
 })
@@ -53,11 +53,11 @@ router.delete('/:user/:month/:id', (req, res) => {
 router.patch('/:user/:month', (req, res) => {
     Expense.updateOne({ _id: req.body.id }, {description: req.body.description, value: req.body.value}, (err, val) => {
         if (!err) {
-            res.send({
+            res.json({
                 success: "true"
             })
         } else {
-            res.send(err);
+            res.json(err);
         }
     })
 })

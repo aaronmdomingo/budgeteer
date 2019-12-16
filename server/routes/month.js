@@ -7,9 +7,9 @@ router.get('/:user/:month', (req, res) => {
     const month = req.params.month;
     Month.findOne({ user_name: `${user}`, month: `${month}` }, (err, foundMonth) => {
         if (!err) {
-            res.send(foundMonth);
+            res.json(foundMonth);
         } else {
-            res.send(err);
+            res.json(err);
         }
     })
 })
@@ -17,11 +17,11 @@ router.get('/:user/:month', (req, res) => {
 router.patch('/:user/:month', (req, res) => {
     Month.updateOne({ _id: req.body.id }, {current_budget: req.body.budget}, (err, val) => {
         if (!err) {
-            res.send({
+            res.json({
                 success: "true"
             })
         } else {
-            res.send(err);
+            res.json(err);
         }
     })
 })
