@@ -3,8 +3,6 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
 
-import './_login.scss';
-
 const Login = (props: any) => {
     const { logInUser, isLoggedIn, history } = props;
     const { message } = history.location.state || '';

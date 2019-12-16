@@ -3,8 +3,6 @@ import { withRouter, Redirect, useParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
 
-import './_dashboard.scss';
-
 import SideBar from './sub-components/side-bar';
 import Table from './sub-components/table';
 import ExpenseForm from './sub-components/expense-form';

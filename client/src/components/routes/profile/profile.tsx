@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie';
 import { CSSTransition } from 'react-transition-group';
 
 import Month from './sub-components/month';
-import './_profile.scss';
 
 const Profile = (props: any) => {
     const { user } = useParams();
