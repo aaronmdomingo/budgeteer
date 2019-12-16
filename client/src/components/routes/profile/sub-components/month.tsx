@@ -50,7 +50,7 @@ const Month = (props: any) => {
         case percentage < 1:
             monthClass = 'mod-red';
             break;
-        case percentage > 1:
+        case percentage > 1 || percentage === 1:
             monthClass = 'mod-really-red';
             break;
         default:

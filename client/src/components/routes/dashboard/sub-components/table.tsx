@@ -51,6 +51,7 @@ const Table = (props: any) => {
     }
 
     const changeStatus = (num: number) => {
+        console.log(num);
         switch(true) {
             case num === 0:
                 setStatus('Perfect. Clean Slate!');
@@ -76,7 +77,7 @@ const Table = (props: any) => {
                 setStatus(`You're cutting it really close now!`);
                 setHeaderClass('mod-red');
                 break;
-            case num > 1:
+            case num > 1 || num === 1:
                 setStatus(`Oh no! You went over for this month!`);
                 setHeaderClass('mod-really-red');
                 break;
