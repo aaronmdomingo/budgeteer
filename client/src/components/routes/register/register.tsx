@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
-import './_register.scss';
 
 const Register = (props: any) => {
     const { isLoggedIn } = props;
@@ -13,6 +12,8 @@ const Register = (props: any) => {
     const [ password, setPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
     const [ serverResponse, setServerResponse ] = useState('');
+    const [ budget, setBudget ] = useState('');
+    const [ inHover, setInHover ] = useState(false);
     const [userCookie] = useCookies(['current-user']);
     let status, passwordMatch, passwordValid: any;
 
@@ -34,6 +35,10 @@ const Register = (props: any) => {
             })
     }
 
+    const hoverHandler = () => {
+        setInHover(!inHover)
+    }
+
     const handleChange = (event: any) => {
         switch (event.target.name) {
             case 'userName':
@@ -44,6 +49,9 @@ const Register = (props: any) => {
                 break;
             case 'lastName':
                 setLastName(event.target.value);
+                break;
+            case 'budget':
+                setBudget(event.target.value);
                 break;
         }
     }
@@ -66,8 +74,13 @@ const Register = (props: any) => {
             password: password,
             firstName: firstName,
             lastName: lastName,
+            budget: budget
         }
-        createUser(userObj);
+        if (!passwordValid) {
+            setConfirmPassword('');
+        } else {
+            createUser(userObj);
+        }
     }
 
     const clearInputs = () => {
@@ -153,6 +166,16 @@ const Register = (props: any) => {
                                 confirmPassword.length && password.length 
                                 ?  !passwordMatch ? <span> Passwords do not match </span> : '' 
                                 : ''
+                            }
+                        </div>
+                        <div className="form">
+                            <div className="text">
+                                Budget 
+                                <i className="fas fa-info-circle" onMouseEnter={hoverHandler} onMouseLeave={hoverHandler}></i>
+                            </div>
+                            <input value={budget} type="number" min="0" name="budget" className={`value ${parseInt(budget) > 0 ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
+                            {
+                                inHover ? <span className="info"> Your initial monthly budget, it can be changed at any time </span> : '' 
                             }
                         </div>
                     </div>

@@ -3,6 +3,38 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 const Month = require('../models/month.model');
+const Expense = require('../models/expense.model');
+
+router.get('/:user', (req, res) => {
+    const user = req.params.user
+
+    User.findOne({ user_name: user.toLowerCase() }, (err, foundUser) => {
+        if (err) throw err;
+        if (foundUser) {
+            Expense.find({ user_name: user  }, (err, foundExpenses) => {
+                if (err) throw err;
+                if (foundExpenses) {
+                    Month.find({ user_name: user }, (err, foundMonths) => {
+                        if (err) throw err;
+                        if (foundMonths) {
+                            res.send({
+                                user_name: foundUser.user_name,
+                                first_name: foundUser.first_name,
+                                last_name: foundUser.last_name,
+                                totalExpenses: foundExpenses,
+                                totalMonths: foundMonths
+                            })
+                        }
+                    })
+                } 
+            })
+        } else {
+            res.send({
+                error: 'Username does not exist'
+            })
+        }
+    })
+})
 
 router.post('/login', (req, res,) => {
     const user = req.body.username.toLowerCase();
@@ -27,6 +59,7 @@ router.post('/login', (req, res,) => {
 
 router.post('/:user', (req, res) => {
     const user = req.params.user.toLowerCase();
+    const budget = req.body.budget;
     User.findOne({ user_name: user }, (err, foundUser) => {
         if (foundUser) {
             res.send({
@@ -53,7 +86,7 @@ router.post('/:user', (req, res) => {
                                     const month = new Month({
                                         user_name: req.body.userName,
                                         month: monthName,
-                                        current_budget: 0
+                                        current_budget: budget
                                     })
                                     month.save();
                                 })

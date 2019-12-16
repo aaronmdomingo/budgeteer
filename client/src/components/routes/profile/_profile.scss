@@ -1,0 +1,137 @@
+.profile {
+    min-height: 100vh;
+    background: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__username {
+        height: 7.5rem;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        color: #FFA114;
+        border-bottom: 2px solid #FFA114;
+        position: relative;
+
+        @include respond(tab-port) {
+            width: 60%;
+        }
+
+        @include respond(tab-land) {
+            width: 50%;
+        }
+
+        @include respond(desktop) {
+            width: 40%;
+        }
+
+        & .name {
+            font-size: 1.5rem;
+            color: #ffffff;
+            position: absolute;
+            bottom: 0;
+        }
+    }
+
+    &__stats {
+        height: 5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 1.15rem;
+        color: #ffffff;
+        
+        & > * {
+            margin: 0.25rem;
+        }
+    }
+
+    &__months {
+        height: 38rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.4s ease;
+
+        @include respond(tab-port) {
+            height: 50rem;
+        }
+
+
+        &_container {
+            width: 85%;
+            height: 35rem;
+            border-radius: 5px;
+
+            @include respond(tab-port) {
+                height: 45rem;
+                width: 35rem;
+            }
+
+            & > div {
+                height: 7.69%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &.month__header {
+                    background-color: #ffffff;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    border-bottom: 2px solid #FFA114;
+                }
+
+                &.month__tab {
+                    background-color: rgba(255, 255, 255, 0.8);
+                }
+
+                & div {
+                    width: 33.33%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &.month {
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+
+                        &:hover {
+                            color: #FFA114
+                        }
+                    }
+                }
+            }
+
+            & div:nth-last-child(1) {
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+        }
+    }
+
+    &__logout {
+        cursor: pointer;
+        position: absolute;
+        top: 2.5%;
+        right: 5%;
+        font-size: 1.5rem;
+        color: #FFA114;
+        transition: all 0.2s ease;
+
+        &:hover {
+            font-size: 1.75rem;
+        }
+    }
+}
