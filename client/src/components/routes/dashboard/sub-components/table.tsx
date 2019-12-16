@@ -54,31 +54,31 @@ const Table = (props: any) => {
         switch(true) {
             case num === 0:
                 setStatus('Perfect. Clean Slate!');
-                setHeaderClass('white');
+                setHeaderClass('mod-white');
                 break;
             case num < .20:
                 setStatus(`You're doing great, keep up the good work!`);
-                setHeaderClass('green');
+                setHeaderClass('mod-green');
                 break;
             case num < .40:
                 setStatus(`You're still doing okay, you got this!`);
-                setHeaderClass('green-orange');
+                setHeaderClass('mod-green-orange');
                 break;
             case num < .60:
                 setStatus(`Around halfway to your budget, hang in there!`);
-                setHeaderClass('orange');
+                setHeaderClass('mod-orange');
                 break;
             case num < .80:
                 setStatus(`Got a little bit of wiggle room left!`);
-                setHeaderClass('orange-red');
+                setHeaderClass('mod-orange-red');
                 break;
             case num < 1:
                 setStatus(`You're cutting it really close now!`);
-                setHeaderClass('red');
+                setHeaderClass('mod-red');
                 break;
             case num > 1:
                 setStatus(`Oh no! You went over for this month!`);
-                setHeaderClass('really-red');
+                setHeaderClass('mod-really-red');
                 break;
             default:
                 setStatus('');
