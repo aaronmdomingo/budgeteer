@@ -16,6 +16,7 @@ const Profile = (props: any) => {
     const [ isDoneLoading, setIsDoneLoading ] = useState(false);
     const [ userCookie,, removeUserCookie ] = useCookies(['current-user']);
     const [ totalSpent, setTotalSpent ] = useState(0);
+    const [ totalBudget, setTotalBudget ] = useState(0);
     const { isLoggedIn, logOutUser } = props;
     const monthsArr = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
@@ -31,9 +32,12 @@ const Profile = (props: any) => {
             .then(res => {
                 if (!res.error) {
                     let totalExpense = 0;
-                    res.totalExpenses.forEach((e :any) => totalExpense += e.value)
+                    let totalBudget = 0;
+                    res.totalExpenses.forEach((e :any) => totalExpense += e.value);
+                    res.totalMonths.forEach((e: any) => totalBudget += e.current_budget);
                     setCurrentUser(res);
                     setTotalSpent(totalExpense);
+                    setTotalBudget(totalBudget);
                 }
             })
             .catch(err => alert(err));
@@ -62,7 +66,7 @@ const Profile = (props: any) => {
             </div>
             <div className="profile__stats">
                 <div className="amount" >
-                    Yearly Budget : { addCommas(totalSpent) }
+                    Yearly Budget : { addCommas(totalBudget) }
                 </div>
                 <div className="amount" >
                     Yearly Expense : { addCommas(totalSpent) }
@@ -77,6 +81,7 @@ const Profile = (props: any) => {
                     <div className="profile__months_container">
                         <div className="month__header">
                             <div>Month</div>
+                            <div>Budget</div>
                             <div>Expense</div>
                         </div>
                         {

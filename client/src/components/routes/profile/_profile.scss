@@ -32,10 +32,15 @@
         height: 5rem;
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
+        justify-content: flex-end;
         align-items: center;
         font-size: 1.15rem;
         color: #ffffff;
+        
+        & > * {
+            margin: 0.25rem;
+        }
     }
 
     &__months {
@@ -51,7 +56,6 @@
             width: 20rem;
             height: 35rem;
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.6);
 
             & > div {
                 height: 7.69%;
@@ -67,13 +71,31 @@
                     border-bottom: 2px solid #FFA114;
                 }
 
+                &.month__tab {
+                    background-color: rgba(255, 255, 255, 0.8);
+                }
+
                 & div {
-                    width: 50%;
+                    width: 33.33%;
                     height: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+
+                    &.month {
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+
+                        &:hover {
+                            color: #FFA114
+                        }
+                    }
                 }
+            }
+
+            & div:nth-last-child(1) {
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
             }
         }
     }
