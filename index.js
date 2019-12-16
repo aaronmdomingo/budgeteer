@@ -16,8 +16,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/budgeteer
 { useNewUrlParser: true, useUnifiedTopology: true });
 
 if (process.env.NODE_ENV === 'production') {  
-    app.use(express.static(path.join(__dirname, 'client/build')));
-
+    
     app.use('/api/expense/', expenseRouter);
     app.use('/api/user/', userRouter);
     app.use('/api/month/', monthRouter);

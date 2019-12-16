@@ -257,8 +257,18 @@ code {
       @media only screen and (min-width: 85.375em) {@content};
   }
 
+  @if $breakpoint == short-phone {
+      @media only screen 
+      and (max-height: 43.750em)
+      and (orientation: portrait)
+      {@content};
+
+  }
+
   @if $breakpoint == wide-land {
-    @media only screen and (max-height: 43.750em) {@content};
+    @media only screen 
+    and (max-height: 43.750em)
+    and (orientation: landscape) {@content};
   } 
 }
 
