@@ -1,5 +1,5 @@
 .landing__page {
-    height: 100vh;
+    min-height: 100vh;
     background: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80');
     background-size: cover;
     background-position: center;
@@ -14,6 +14,7 @@
         background: url('../../images/budgeteer-white.png');
         background-size: cover;
         background-position: center;
+        margin-top: 1rem;
     }
 
     &_slogan {
@@ -30,6 +31,7 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        margin-bottom: 1rem;
         transition: all 0.4s ease-out;
 
         &-guest {
@@ -55,5 +57,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-bottom: 1rem;
     }
 }

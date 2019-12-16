@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
-import './_register.scss';
 
 const Register = (props: any) => {
     const { isLoggedIn } = props;
