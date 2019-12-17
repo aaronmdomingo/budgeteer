@@ -17,6 +17,18 @@ A full-stack MERN application with CRUD functionality that allow users to budget
 11. Cookies
 12. BCrypt
 
+## Features
+
+1. User can view all the expenses they have entered before
+2. User can add a new expense
+3. User can update any expense they have entered before
+4. User can delete any expense they have entered before
+5. User can log in and view information specific to them
+6. User can register with a unique username and encrypted password
+7. User can set / update a specific budget for any month
+8. User can see their profile with their total yearly budget and expense
+9. User can see specific budget to expense ratio represented by unique colors
+
 ## Preview
 
 ![](/demo/budgeteer.gif)
