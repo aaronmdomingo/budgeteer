@@ -43,7 +43,7 @@ A full-stack MERN application with CRUD functionality that allow users to budget
     npm install
     ```
 
-1. Install all dependencies for the server with NPM.
+1. Install all dependencies for the client with NPM.
 
 ```shell
     cd client
