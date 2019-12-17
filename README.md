@@ -18,6 +18,10 @@ A full-stack mobile-first MERN application with CRUD functionality that allow us
 12. Cookies
 13. BCrypt
 
+## Live Demo
+
+Try the application live at https://budgeteer-aarondomingo.herokuapp.com
+
 ## Features
 
 1. User can view all the expenses they have entered before
