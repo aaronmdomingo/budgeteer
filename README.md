@@ -1,6 +1,6 @@
 # Job Tracker
 
-A full-stack MERN application with CRUD functionality that allow users to budget for every month of the year.
+A full-stack mobile-first MERN application with CRUD functionality that allow users to budget for every month of the year.
 
 ## Technologies Used
 
