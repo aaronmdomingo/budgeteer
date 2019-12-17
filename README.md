@@ -1,4 +1,4 @@
-# Job Tracker
+# Budgeteer
 
 A full-stack mobile-first MERN application with CRUD functionality that allow users to budget for every month of the year.
 
