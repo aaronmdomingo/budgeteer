@@ -49,26 +49,26 @@ A full-stack mobile-first MERN application with CRUD functionality that allow us
     cd budgeteer
     ```
 
-1. Install all dependencies for the server with NPM.
+2. Install all dependencies for the server with NPM.
 
     ```shell
     npm install
     ```
 
-1. Install all dependencies for the client with NPM.
+3. Install all dependencies for the client with NPM.
 
 ```shell
     cd client
     npm install
 ```
 
-1. Create a MongoDB Database
+4. Create a MongoDB Database
 
     ```shell
     use budgeteer
     ```
 
-1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
+5. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
 
     ```shell
     npm run dev
