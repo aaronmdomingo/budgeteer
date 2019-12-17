@@ -7,15 +7,16 @@ A full-stack mobile-first MERN application with CRUD functionality that allow us
 1. HTML5
 2. CSS
 3. JavaScript
-4. SASS
-5. React 
-6. React Router
-7. React Hooks
-8. Node.js
-9. Express
-10. MongoDB
-11. Cookies
-12. BCrypt
+4. TypeScript
+5. SASS
+6. React 
+7. React Router
+8. React Hooks
+9. Node.js
+10. Express
+11. MongoDB
+12. Cookies
+13. BCrypt
 
 ## Features
 
