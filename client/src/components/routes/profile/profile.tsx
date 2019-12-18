@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withRouter, useParams, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { CSSTransition } from 'react-transition-group';
+import { addCommas } from '../../App';
 
 import Month from './sub-components/month';
 
@@ -42,10 +43,6 @@ const Profile = (props: any) => {
             .catch(err => alert(err));
     }
 
-    const addCommas = (num: number) => {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
     const logOut = () => {
         removeUserCookie('current-user', {path: '/'});
         logOutUser();
@@ -54,7 +51,7 @@ const Profile = (props: any) => {
     if (!userCookie['current-user'] && !isLoggedIn) {
         return <Redirect to='/' />
     }
-    
+
     return (
         <div className="profile">
             <div className="profile__username">
@@ -85,8 +82,8 @@ const Profile = (props: any) => {
                         </div>
                         {
                             monthsArr.map((e, index) => {
-                                return <Month key={index} 
-                                monthName={e} 
+                                return <Month key={index}
+                                monthName={e}
                                 addCommas={addCommas}/>;
                             })
                         }
