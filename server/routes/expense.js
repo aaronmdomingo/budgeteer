@@ -20,7 +20,7 @@ router.post('/:user/:month', (req, res) => {
     const expense = new Expense({
         user_name: userName,
         month: month,
-        date: new Date(),
+        date: new Date().setHours(0, 0, 0, 0),
         description: req.body.description,
         value: req.body.value
      })
