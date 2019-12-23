@@ -35,8 +35,8 @@ const Register = (props: any) => {
             })
     }
 
-    const hoverHandler = () => {
-        setInHover(!inHover)
+    const hoverHandler = (bool: boolean) => {
+        setInHover(bool)
     }
 
     const handleChange = (event: any) => {
@@ -152,8 +152,8 @@ const Register = (props: any) => {
                             </div>
                             <input value={password} type="password" name="password" className={`value ${passwordValid ? 'success' : 'danger' }`} onChange={handlePassWordChange} autoComplete="off" required/>
                             {
-                                password.length ?  
-                                passwordValid ? '' : <span> {status} </span>  
+                                password.length ?
+                                passwordValid ? '' : <span> {status} </span>
                                 : ''
                             }
                         </div>
@@ -163,19 +163,19 @@ const Register = (props: any) => {
                             </div>
                             <input value={confirmPassword} type="password" name="confirmPassword" className={`value ${passwordMatch ? 'success' : 'danger' }`} onChange={handlePassWordChange} autoComplete="off" required/>
                             {
-                                confirmPassword.length && password.length 
-                                ?  !passwordMatch ? <span> Passwords do not match </span> : '' 
+                                confirmPassword.length && password.length
+                                ?  !passwordMatch ? <span> Passwords do not match </span> : ''
                                 : ''
                             }
                         </div>
                         <div className="form">
                             <div className="text">
-                                Budget 
-                                <i className="fas fa-info-circle" onMouseEnter={hoverHandler} onMouseLeave={hoverHandler}></i>
+                                Budget
+                                <i className="fas fa-info-circle" onMouseEnter={() => hoverHandler(true)} onMouseLeave={() => hoverHandler(false)}></i>
                             </div>
                             <input value={budget} type="number" min="0" max="1000000" name="budget" className={`value ${parseInt(budget) > 0 ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
                             {
-                                inHover ? <span className="info"> Your initial monthly budget, it can be changed at any time </span> : '' 
+                                inHover ? <span className="info"> Your initial monthly budget, it can be changed at any time </span> : ''
                             }
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { animateScroll } from 'react-scroll';
 import { CSSTransition } from 'react-transition-group';
+import { addCommas } from '../../../App';
 
 import Expense from './expense';
 import Modal from './modal';
@@ -44,10 +45,6 @@ const Table = (props: any) => {
                 }
             })
             .catch(err => alert(err));
-    }
-
-    const addCommas = (num: number) => {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     const changeStatus = (num: number) => {
@@ -119,16 +116,16 @@ const Table = (props: any) => {
                 </div>
                 <div className="dashboard__table_container-body" id="dashboard--table">
                     {
-                        expenseArr.length 
+                        expenseArr.length
                         ? <div className="dashboard__table_nav">
                             <div className="dashboard__table_nav-date">Date</div>
                             <div className="dashboard__table_nav-description">Description</div>
                             <div className="dashboard__table_nav-value">Value</div>
-                        </div> 
+                        </div>
                         : ''
                     }
                     {
-                        expenseArr.length 
+                        expenseArr.length
                         ? expenseArr.map((e: any) => {
                                 return <Expense key={e._id}
                                     id={e._id}
@@ -152,7 +149,7 @@ const Table = (props: any) => {
                 timeout={500}
                 classNames="alert"
                 unmountOnExit>
-                <Modal 
+                <Modal
                 setShowModal={setShowModal}
                 monthName={monthName}
                 budget={budget}

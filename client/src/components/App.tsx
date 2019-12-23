@@ -15,6 +15,10 @@ export const UserContext = createContext({
   currentUser: ''
 });
 
+export const addCommas = (num: number) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
