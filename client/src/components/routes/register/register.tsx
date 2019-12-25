@@ -6,15 +6,18 @@ import { useCookies } from 'react-cookie';
 const Register = (props: any) => {
     const { isLoggedIn } = props;
     const [ isDoneLoading, setIsDoneLoading ] = useState(false);
-    const [ userName, setUserName ] = useState('');
-    const [ firstName, setFirstName ] = useState('');
-    const [ lastName, setLastName ] = useState('');
-    const [ password, setPassword ] = useState('');
-    const [ confirmPassword, setConfirmPassword ] = useState('');
     const [ serverResponse, setServerResponse ] = useState('');
-    const [ budget, setBudget ] = useState('');
     const [ inHover, setInHover ] = useState(false);
-    const [userCookie] = useCookies(['current-user']);
+    const [ form, setForm ] = useState({
+        userName: '',
+        firstName: '',
+        lastName: '',
+        password: '',
+        confirmPassword: '',
+        budget: ''
+    });
+    const [ userCookie ] = useCookies(['current-user']);
+    const { userName, firstName, lastName, password, confirmPassword, budget } = form;
     let status, passwordMatch, passwordValid: any;
 
     useEffect(() => {
@@ -26,7 +29,10 @@ const Register = (props: any) => {
             .then(res => res.json())
             .then(res => {
                 if (res.error) {
-                    setUserName('');
+                    setForm({
+                        ...form,
+                        userName: ''
+                    })
                     setServerResponse(res.error);
                 } else {
                     clearInputs();
@@ -39,32 +45,12 @@ const Register = (props: any) => {
         setInHover(bool)
     }
 
-    const handleChange = (event: any) => {
-        switch (event.target.name) {
-            case 'userName':
-                setUserName(event.target.value);
-                break;
-            case 'firstName':
-                setFirstName(event.target.value);
-                break;
-            case 'lastName':
-                setLastName(event.target.value);
-                break;
-            case 'budget':
-                setBudget(event.target.value);
-                break;
-        }
-    }
 
-    const handlePassWordChange = (event: any) => {
-        switch (event.target.name) {
-            case 'password':
-                setPassword(event.target.value);
-                break;
-            case 'confirmPassword':
-                setConfirmPassword(event.target.value);
-                break;
-        }
+    const formChange = (event: any) => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value
+        })
     }
 
     const handleSubmit = (event:any) => {
@@ -77,18 +63,24 @@ const Register = (props: any) => {
             budget: budget
         }
         if (!passwordValid) {
-            setConfirmPassword('');
+            setForm({
+                ...form,
+                confirmPassword: ''
+            })
         } else {
             createUser(userObj);
         }
     }
 
     const clearInputs = () => {
-        setUserName('');
-        setPassword('');
-        setFirstName('');
-        setLastName('');
-        setConfirmPassword('');
+        setForm({
+            ...form,
+            userName: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            confirmPassword: ''
+        })
     }
 
     if (password.length < 8) {
@@ -103,7 +95,6 @@ const Register = (props: any) => {
         passwordValid = true;
         status = '';
     }
-
 
     if (confirmPassword.length) {
         if (password === confirmPassword) {
@@ -129,7 +120,7 @@ const Register = (props: any) => {
                             <div className="text">
                                 Username
                             </div>
-                            <input value={userName} name="userName"  type="text" className={`value ${userName.length ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
+                            <input value={userName} name="userName"  type="text" className={`value ${userName.length ? 'success' : 'danger' }`} onChange={formChange} autoComplete="off" required/>
                             {
                                 serverResponse ? <span> { serverResponse } </span> : ''
                             }
@@ -138,19 +129,19 @@ const Register = (props: any) => {
                             <div className="text">
                                 First Name
                             </div>
-                            <input value={firstName} type="text" name="firstName" className={`value ${firstName.length ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
+                            <input value={firstName} type="text" name="firstName" className={`value ${firstName.length ? 'success' : 'danger' }`} onChange={formChange} autoComplete="off" required/>
                         </div>
                         <div className="form">
                             <div className="text">
                                 Last Name
                             </div>
-                            <input value={lastName} type="text"  name="lastName" className={`value ${lastName.length ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
+                            <input value={lastName} type="text"  name="lastName" className={`value ${lastName.length ? 'success' : 'danger' }`} onChange={formChange} autoComplete="off" required/>
                         </div>
                         <div className="form">
                             <div className="text">
                                 Password
                             </div>
-                            <input value={password} type="password" name="password" className={`value ${passwordValid ? 'success' : 'danger' }`} onChange={handlePassWordChange} autoComplete="off" required/>
+                            <input value={password} type="password" name="password" className={`value ${passwordValid ? 'success' : 'danger' }`} onChange={formChange} autoComplete="off" required/>
                             {
                                 password.length ?
                                 passwordValid ? '' : <span> {status} </span>
@@ -161,7 +152,7 @@ const Register = (props: any) => {
                             <div className="text">
                                 Confirm Password
                             </div>
-                            <input value={confirmPassword} type="password" name="confirmPassword" className={`value ${passwordMatch ? 'success' : 'danger' }`} onChange={handlePassWordChange} autoComplete="off" required/>
+                            <input value={confirmPassword} type="password" name="confirmPassword" className={`value ${passwordMatch ? 'success' : 'danger' }`} onChange={formChange} autoComplete="off" required/>
                             {
                                 confirmPassword.length && password.length
                                 ?  !passwordMatch ? <span> Passwords do not match </span> : ''
@@ -173,7 +164,7 @@ const Register = (props: any) => {
                                 Budget
                                 <i className="fas fa-info-circle" onMouseEnter={() => hoverHandler(true)} onMouseLeave={() => hoverHandler(false)}></i>
                             </div>
-                            <input value={budget} type="number" min="0" max="1000000" name="budget" className={`value ${parseInt(budget) > 0 ? 'success' : 'danger' }`} onChange={handleChange} autoComplete="off" required/>
+                            <input value={budget} type="number" min="0" max="1000000" name="budget" className={`value ${parseInt(budget) > 0 ? 'success' : 'danger' }`} onChange={formChange} autoComplete="off" required/>
                             {
                                 inHover ? <span className="info"> Your initial monthly budget, it can be changed at any time </span> : ''
                             }
