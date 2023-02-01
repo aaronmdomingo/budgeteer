@@ -16,6 +16,6 @@
     "bcryptjs": "^2.4.3",
     "concurrently": "^5.0.1",
     "express": "^4.17.1",
-    "mongoose": "^5.8.1"
+    "mongoose": "^5.13.15"
   }
 }
